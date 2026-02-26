@@ -1,0 +1,4 @@
+{
+    "DEEPSEEK_API_KEY" : "sk-25e63b478a72452581ba2fac9d224d1b",
+    "DEEPSEEK_API_URL" : "https://api.deepseek.com/chat/completions"
+}
