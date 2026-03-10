@@ -30,6 +30,15 @@ source ~/.bashrc
 
 dos2unix ~/.bashrc
 
+### conda 常用命令_环境导入
+
+conda env export --no-builds > environment.yml
+
+conda env create -f environment.yml
+
+conda env update -f environment.yml
+
+
 ## cuda 安装
 
 ### nvidia 驱动

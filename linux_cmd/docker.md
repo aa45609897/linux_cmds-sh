@@ -27,6 +27,8 @@ sudo add-apt-repository \
 # 安装
 sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+sudo usermod -aG docker $USER
 ```
 
 3. 镜像配置
@@ -93,6 +95,44 @@ docker run -d \
   portainer/portainer-ce:latest
 ```
 
+docker run -d \
+  --name dufs \
+  --restart always \
+  -p 5000:5000 \
+  -v $(pwd):/data \
+  sigoden/dufs \
+  /data -A
+
+## docker compose
+
+docker-compose.yml
+
+docker compose up -d
+
+docker compose down
+
+docker compose logs -f
+
+docker compose restart
+```bash
+# 基本语法
+docker save -o 输出文件名.tar 镜像名:标签
+# 示例：保存 fika 镜像
+docker save -o fika-server-4.0.12.tar ghcr.io/zhliau/fika-spt-server-docker:4.0.12
+# 基本语法
+docker load -i 文件名.tar
+# 示例：加载刚才保存的 fika 镜像
+docker load -i fika-server-4.0.12.tar
+# 通过管道直接压缩
+docker save ghcr.io/zhliau/fika-spt-server-docker:4.0.12 | gzip > fika-server-4.0.12.tar.gz
+# 加载压缩的镜像
+gunzip -c fika-server-4.0.12.tar.gz | docker load
+# 或者
+docker load -i fika-server-4.0.12.tar.gz
+docker save -o multiple-images.tar \
+  ghcr.io/zhliau/fika-spt-server-docker:4.0.12 \
+  nginx:alpine
+```
 ## 安卓镜像
 
 #### 拉取镜像 (推荐 Android 12)
@@ -139,3 +179,4 @@ adb devices
 scrcpy --serial 192.168.240.112:5555
 
 adb shell dumpsys SurfaceFlinger | grep "GLES"
+
