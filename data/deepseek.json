@@ -1,4 +1,11 @@
 {
     "DEEPSEEK_API_KEY" : "sk-25e63b478a72452581ba2fac9d224d1b",
-    "DEEPSEEK_API_URL" : "https://api.deepseek.com/chat/completions"
+    "DEEPSEEK_API_URL" : "https://api.deepseek.com/chat/completions",
+
+    "pan_key" : {
+        "AppID" : "122358499",
+        "AppKey" : "u9Ht9KoJFPz1GF4UhlXu0ESpOefCScON",
+        "Secretkey" : "SaqjXEI6vL8C925r2CzfBp1waxgNELDa",
+        "Signkey" : "sJXEeI4LSAt1lPHFxLC+eKT#euRqWwzS"
+    }
 }

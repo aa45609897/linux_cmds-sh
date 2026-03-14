@@ -1,1 +1,1 @@
-pyinstaller --onefile --windowed --upx-dir C:\feng1\tools\upx-5.1.0-win64 overlay.py
+pyinstaller --onefile --windowed --upx-dir C:\feng1\tools\upx-5.1.0-win64  --icon=icon.ico overlay.py

@@ -145,8 +145,8 @@ export http_proxy="socks5h://192.168.10.100:10808"
 export https_proxy="socks5h://192.168.10.100:10808"
 export all_proxy="socks5h://192.168.10.100:10808"
 
-export http_proxy="http://192.168.10.100:10808"
-export https_proxy="http://192.168.10.100:10808"
+export http_proxy="http://192.168.1.100:10808"
+export https_proxy="http://192.168.1.100:10808"
 
 pip install pysocks
 pip install transformers --proxy socks5h://192.168.10.100:10808
@@ -159,3 +159,20 @@ sudo vim /etc/apt/apt.conf.d/95proxies
     Acquire::https::Proxy "http://192.168.10.100:10808/";
 
 curl ipinfo.io
+
+## wifi
+
+network:
+  version: 2
+  renderer: networkd
+  wifis:
+    wlan0:
+      dhcp4: no
+      addresses:
+        - 192.168.1.210/24
+      gateway4: 192.168.1.1 
+      nameservers:
+        addresses: [192.168.1.1, 8.8.8.8] 
+      access-points:
+        "feng1":
+          password: "Fengguohao1."
