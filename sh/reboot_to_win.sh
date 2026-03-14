@@ -1,4 +1,4 @@
 #bash
-sudo grub-reboot "Windows Boot Manager (on /dev/nvme1n1p1)"
+sudo grub-reboot 'osprober-efi-3925-2F7C'
 
 sudo reboot
