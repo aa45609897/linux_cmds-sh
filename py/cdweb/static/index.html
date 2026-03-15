@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>光盘管理系统</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0e14;
+            --bg-secondary: #12181f;
+            --bg-card: #171e27;
+            --bg-elevated: #1e2832;
+            --border: #2a3544;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --text-muted: #6e7681;
+            --accent: #00d4aa;
+            --accent-dim: rgba(0, 212, 170, 0.15);
+            --danger: #f85149;
+            --warning: #d29922;
+            --success: #3fb950;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .font-mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* 背景效果 */
+        .bg-pattern {
+            position: fixed;
+            inset: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0, 212, 170, 0.08), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 100%, rgba(0, 150, 136, 0.05), transparent);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .grid-overlay {
+            position: fixed;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(42, 53, 68, 0.3) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(42, 53, 68, 0.3) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+        }
+
+        /* 卡片样式 */
+        .card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 212, 170, 0.3);
+            box-shadow: 0 0 30px rgba(0, 212, 170, 0.05);
+        }
+
+        /* 按钮样式 */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            background: #00eabb;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(0, 212, 170, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--bg-elevated);
+            color: var(--text-primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+            border-color: var(--accent);
+        }
+
+        .btn-danger {
+            background: rgba(248, 81, 73, 0.15);
+            color: var(--danger);
+            border: 1px solid rgba(248, 81, 73, 0.3);
+        }
+
+        .btn-danger:hover {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        /* 状态指示器 */
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.online {
+            background: var(--success);
+            box-shadow: 0 0 10px var(--success);
+        }
+
+        .status-dot.offline {
+            background: var(--danger);
+            box-shadow: 0 0 10px var(--danger);
+        }
+
+        .status-dot.warning {
+            background: var(--warning);
+            box-shadow: 0 0 10px var(--warning);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* 文件列表 */
+        .file-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s;
+        }
+
+        .file-item:hover {
+            background: var(--bg-elevated);
+        }
+
+        .file-item:last-child {
+            border-bottom: none;
+        }
+
+        /* 上传区域 */
+        .upload-zone {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .upload-zone:hover,
+        .upload-zone.dragover {
+            border-color: var(--accent);
+            background: var(--accent-dim);
+        }
+
+        /* 进度条 */
+        .progress-bar {
+            height: 4px;
+            background: var(--bg-elevated);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent), #00eabb);
+            border-radius: 2px;
+            transition: width 0.3s ease;
+        }
+
+        /* Tab切换 */
+        .tab-btn {
+            padding: 12px 24px;
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.2s;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+        }
+
+        .tab-btn.active {
+            color: var(--accent);
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--accent);
+        }
+
+        /* 日志输出 */
+        .log-output {
+            background: var(--bg-primary);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            color: var(--text-secondary);
+            max-height: 300px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+
+        /* 滚动条 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--text-muted);
+        }
+
+        /* 动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        /* Toast通知 */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 16px 24px;
+            border-radius: 10px;
+            font-size: 14px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast.success {
+            background: rgba(63, 185, 80, 0.15);
+            border: 1px solid var(--success);
+            color: var(--success);
+        }
+
+        .toast.error {
+            background: rgba(248, 81, 73, 0.15);
+            border: 1px solid var(--danger);
+            color: var(--danger);
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* 加载动画 */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top-color: currentColor;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* 光盘动画 */
+        .disc-icon {
+            animation: rotate 4s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+    <div class="grid-overlay"></div>
+
+    <div class="relative z-10 min-h-screen p-6">
+        <!-- Header -->
+        <header class="max-w-7xl mx-auto mb-8">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#00d4aa] to-[#00a88a] flex items-center justify-center">
+                        <svg class="w-6 h-6 text-[#0a0e14]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="3" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-semibold">光盘管理系统</h1>
+                        <p class="text-sm text-[#8b949e]">Optical Disc Manager</p>
+                    </div>
+                </div>
+                <div class="flex items-center gap-3">
+                    <div id="connectionStatus" class="flex items-center gap-2 px-4 py-2 rounded-lg bg-[#171e27] border border-[#2a3544]">
+                        <div class="status-dot offline"></div>
+                        <span class="text-sm text-[#8b949e]">检测中...</span>
+                    </div>
+                    <button onclick="refreshAll()" class="btn btn-secondary">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                        </svg>
+                        刷新
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto">
+            <!-- 状态概览 -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+                <div class="card p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-[#8b949e] text-sm">光驱设备</span>
+                        <svg class="w-5 h-5 text-[#6e7681]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"/>
+                        </svg>
+                    </div>
+                    <div class="font-mono text-lg" id="deviceName">--</div>
+                </div>
+
+                <div class="card p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-[#8b949e] text-sm">光盘状态</span>
+                        <svg class="w-5 h-5 text-[#6e7681]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <circle cx="12" cy="12" r="10" stroke-width="2"/>
+                            <circle cx="12" cy="12" r="3" stroke-width="2"/>
+                        </svg>
+                    </div>
+                    <div class="text-lg" id="discStatus">未检测</div>
+                </div>
+
+                <div class="card p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-[#8b949e] text-sm">光盘类型</span>
+                        <svg class="w-5 h-5 text-[#6e7681]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
+                        </svg>
+                    </div>
+                    <div class="text-lg" id="discType">--</div>
+                </div>
+
+                <div class="card p-5">
+                    <div class="flex items-center justify-between mb-3">
+                        <span class="text-[#8b949e] text-sm">缓存大小</span>
+                        <svg class="w-5 h-5 text-[#6e7681]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"/>
+                        </svg>
+                    </div>
+                    <div class="text-lg font-mono" id="cacheSize">0 B</div>
+                </div>
+            </div>
+
+            <!-- Tab导航 -->
+            <div class="card mb-6">
+                <div class="flex border-b border-[#2a3544]">
+                    <button class="tab-btn active" data-tab="info">
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            光盘信息
+                        </span>
+                    </button>
+                    <button class="tab-btn" data-tab="files">
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                            </svg>
+                            文件浏览
+                        </span>
+                    </button>
+                    <button class="tab-btn" data-tab="cache">
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                            </svg>
+                            上传缓存
+                        </span>
+                    </button>
+                    <button class="tab-btn" data-tab="burn">
+                        <span class="flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+                            </svg>
+                            刻录
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Tab内容 -->
+                <div class="p-6">
+                    <!-- 光盘信息 -->
+                    <div id="tab-info" class="tab-content">
+                        <div class="flex gap-4 mb-6">
+                            <button onclick="loadDiscInfo()" class="btn btn-primary">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
+                                </svg>
+                                读取信息
+                            </button>
+                            <button onclick="toggleTray()" class="btn btn-secondary" id="ejectBtn">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                                </svg>
+                                弹出托盘
+                            </button>
+                            <button onclick="downloadISO()" class="btn btn-secondary" id="isoBtn" disabled>
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                </svg>
+                                下载ISO镜像
+                            </button>
+                        </div>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="text-sm font-medium text-[#8b949e] mb-3">详细信息</h3>
+                                <div class="bg-[#0a0e14] rounded-lg p-4 space-y-3" id="discInfoPanel">
+                                    <div class="text-[#6e7681] text-center py-8">点击"读取信息"按钮获取光盘详情</div>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 class="text-sm font-medium text-[#8b949e] mb-3">原始输出</h3>
+                                <div class="log-output" id="rawOutput">
+                                    等待读取...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 文件浏览 -->
+                    <div id="tab-files" class="tab-content hidden">
+                        <div class="flex gap-4 mb-6">
+                            <button onclick="loadDiscFiles()" class="btn btn-primary" id="loadFilesBtn">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                                </svg>
+                                列出文件
+                            </button>
+                        </div>
+
+                        <div class="bg-[#0a0e14] rounded-lg overflow-hidden">
+                            <div class="flex items-center justify-between px-4 py-3 border-b border-[#2a3544]">
+                                <span class="text-sm text-[#8b949e]">光盘文件列表</span>
+                                <span class="text-sm font-mono text-[#00d4aa]" id="filesCount">0 个文件</span>
+                            </div>
+                            <div id="filesList" class="max-h-96 overflow-y-auto">
+                                <div class="text-[#6e7681] text-center py-12">请先点击"列出文件"</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 上传缓存 -->
+                    <div id="tab-cache" class="tab-content hidden">
+                        <div class="upload-zone mb-6" id="uploadZone">
+                            <input type="file" id="fileInput" multiple webkitdirectory class="hidden">
+                            <svg class="w-12 h-12 mx-auto mb-4 text-[#6e7681]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"/>
+                            </svg>
+                            <p class="text-lg mb-2">拖拽文件到此处上传</p>
+                            <p class="text-sm text-[#6e7681]">或点击选择文件</p>
+                        </div>
+
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-sm font-medium text-[#8b949e]">缓存文件</h3>
+                            <button onclick="clearCache()" class="btn btn-danger text-sm py-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/>
+                                </svg>
+                                清空缓存
+                            </button>
+                        </div>
+
+                        <div class="bg-[#0a0e14] rounded-lg overflow-hidden">
+                            <div id="cacheList" class="max-h-80 overflow-y-auto">
+                                <div class="text-[#6e7681] text-center py-12">缓存为空</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 刻录 -->
+                    <div id="tab-burn" class="tab-content hidden">
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="text-sm font-medium text-[#8b949e] mb-4">刻录前检查</h3>
+                                <div class="bg-[#0a0e14] rounded-lg p-4" id="burnCheckList">
+                                    <div class="text-[#6e7681] text-center py-8">点击"检查状态"开始</div>
+                                </div>
+                                
+                                <div class="mt-6 space-y-4">
+                                    <div>
+                                        <label class="text-sm text-[#8b949e] block mb-2">刻录速度</label>
+                                        <select id="burnSpeed" class="w-full bg-[#171e27] border border-[#2a3544] rounded-lg px-4 py-3 text-sm focus:outline-none focus:border-[#00d4aa]">
+                                            <option value="0">自动</option>
+                                            <option value="2">2x</option>
+                                            <option value="4">4x</option>
+                                            <option value="8">8x</option>
+                                            <option value="16">16x</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="mt-6 flex gap-4">
+                                    <button onclick="checkBurnStatus()" class="btn btn-secondary flex-1">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                        </svg>
+                                        检查状态
+                                    </button>
+                                    <button onclick="quickBurn()" class="btn btn-primary flex-1" id="burnBtn">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+                                        </svg>
+                                        快速刻录
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h3 class="text-sm font-medium text-[#8b949e] mb-4">刻录日志</h3>
+                                <div class="log-output h-64" id="burnLog">
+                                    等待刻录任务...
+                                </div>
+                                
+                                <div class="mt-4">
+                                    <div class="flex items-center justify-between mb-2">
+                                        <span class="text-sm text-[#8b949e]">进度</span>
+                                        <span class="text-sm font-mono text-[#00d4aa]" id="burnProgress">0%</span>
+                                    </div>
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" id="burnProgressBar" style="width: 0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // API基础地址
+        const API_BASE = window.location.origin;
+
+        // 状态
+        let systemStatus = {
+            deviceExists: false,
+            discPresent: false,
+            deviceReady: false
+        };
+
+        // 初始化
+        document.addEventListener('DOMContentLoaded', () => {
+            initTabs();
+            initUpload();
+            refreshAll();
+        });
+
+        // Tab切换
+        function initTabs() {
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const tabId = btn.dataset.tab;
+                    
+                    // 更新按钮状态
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // 切换内容
+                    document.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+                });
+            });
+        }
+
+        // 文件上传初始化
+        function initUpload() {
+            const uploadZone = document.getElementById('uploadZone');
+            const fileInput = document.getElementById('fileInput');
+
+            uploadZone.addEventListener('click', () => fileInput.click());
+            
+            uploadZone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                uploadZone.classList.add('dragover');
+            });
+
+            uploadZone.addEventListener('dragleave', () => {
+                uploadZone.classList.remove('dragover');
+            });
+
+            uploadZone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                uploadZone.classList.remove('dragover');
+                handleFiles(e.dataTransfer.files);
+            });
+
+            fileInput.addEventListener('change', (e) => {
+                handleFiles(e.target.files);
+            });
+        }
+
+        // 处理文件上传
+        async function handleFiles(files) {
+            for (const file of files) {
+                const formData = new FormData();
+                formData.append('file', file);
+
+                try {
+                    const response = await fetch(`${API_BASE}/api/cache/upload`, {
+                        method: 'POST',
+                        body: formData
+                    });
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        showToast(`上传成功: ${result.file.name}`, 'success');
+                    } else {
+                        showToast(`上传失败: ${result.error}`, 'error');
+                    }
+                } catch (err) {
+                    showToast(`上传错误: ${err.message}`, 'error');
+                }
+            }
+            loadCacheList();
+        }
+
+        // 刷新所有状态
+        async function refreshAll() {
+            await loadStatus();
+            await loadCacheList();
+        }
+
+        // 加载状态
+        async function loadStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/api/status`);
+                const data = await response.json();
+                
+                systemStatus = data;
+                
+                // 更新UI
+                document.getElementById('deviceName').textContent = data.device || '--';
+                
+                const statusEl = document.getElementById('discStatus');
+                const connectionEl = document.getElementById('connectionStatus');
+                
+                if (data.deviceExists && data.discPresent) {
+                    statusEl.innerHTML = '<span class="text-[#3fb950]">已就绪</span>';
+                    connectionEl.innerHTML = `
+                        <div class="status-dot online"></div>
+                        <span class="text-sm text-[#3fb950]">设备就绪</span>
+                    `;
+                    document.getElementById('isoBtn').disabled = false;
+                } else if (data.deviceExists) {
+                    statusEl.innerHTML = '<span class="text-[#d29922]">无光盘</span>';
+                    connectionEl.innerHTML = `
+                        <div class="status-dot warning"></div>
+                        <span class="text-sm text-[#d29922]">等待光盘</span>
+                    `;
+                    document.getElementById('isoBtn').disabled = true;
+                } else {
+                    statusEl.innerHTML = '<span class="text-[#f85149]">未检测到</span>';
+                    connectionEl.innerHTML = `
+                        <div class="status-dot offline"></div>
+                        <span class="text-sm text-[#f85149]">设备未连接</span>
+                    `;
+                    document.getElementById('isoBtn').disabled = true;
+                }
+                
+            } catch (err) {
+                document.getElementById('discStatus').innerHTML = '<span class="text-[#f85149]">连接失败</span>';
+                document.getElementById('connectionStatus').innerHTML = `
+                    <div class="status-dot offline"></div>
+                    <span class="text-sm text-[#f85149]">服务离线</span>
+                `;
+            }
+        }
+
+        // 加载光盘信息
+        async function loadDiscInfo() {
+            if (!systemStatus.discPresent) {
+                showToast('请先放入光盘', 'error');
+                return;
+            }
+
+            showToast('正在读取光盘信息...', 'success');
+
+            try {
+                const response = await fetch(`${API_BASE}/api/disc/info`);
+                const data = await response.json();
+
+                if (data.success) {
+                    const info = data.info;
+                    
+                    // 更新类型显示
+                    document.getElementById('discType').textContent = info.type || '--';
+
+                    // 构建信息面板
+                    const infoPanel = document.getElementById('discInfoPanel');
+                    infoPanel.innerHTML = `
+                        <div class="flex justify-between py-2 border-b border-[#2a3544]">
+                            <span class="text-[#8b949e]">设备</span>
+                            <span class="font-mono">${info.device}</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-[#2a3544]">
+                            <span class="text-[#8b949e]">类型</span>
+                            <span class="text-[#00d4aa]">${info.type}</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-[#2a3544]">
+                            <span class="text-[#8b949e]">容量</span>
+                            <span class="font-mono">${info.capacityFormatted || '未知'}</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-[#2a3544]">
+                            <span class="text-[#8b949e]">可写</span>
+                            <span class="${info.isWritable ? 'text-[#3fb950]' : 'text-[#f85149]'}">${info.isWritable ? '是' : '否'}</span>
+                        </div>
+                        <div class="flex justify-between py-2 border-b border-[#2a3544]">
+                            <span class="text-[#8b949e]">空白盘</span>
+                            <span class="${info.isBlank ? 'text-[#3fb950]' : 'text-[#d29922]'}">${info.isBlank ? '是' : '否'}</span>
+                        </div>
+                        ${info.tracks.length > 0 ? `
+                        <div class="py-2">
+                            <span class="text-[#8b949e]">轨道数: ${info.tracks.length}</span>
+                        </div>
+                        ` : ''}
+                    `;
+
+                    // 更新原始输出
+                    document.getElementById('rawOutput').textContent = info.rawOutput || '无输出';
+                    
+                    showToast('信息读取完成', 'success');
+                } else {
+                    showToast(data.error || '读取失败', 'error');
+                }
+            } catch (err) {
+                showToast(`请求失败: ${err.message}`, 'error');
+            }
+        }
+
+        // 弹出/关闭托盘
+        async function toggleTray() {
+            const btn = document.getElementById('ejectBtn');
+            const isEject = !btn.dataset.closed || btn.dataset.closed === 'true';
+            
+            try {
+                const response = await fetch(`${API_BASE}/api/disc/eject`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ close: !isEject })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    btn.dataset.closed = isEject ? 'false' : 'true';
+                    btn.innerHTML = isEject ? `
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
+                        </svg>
+                        关闭托盘
+                    ` : `
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+                        </svg>
+                        弹出托盘
+                    `;
+                    showToast(data.message, 'success');
+                    setTimeout(refreshAll, 2000);
+                } else {
+                    showToast(data.error || '操作失败', 'error');
+                }
+            } catch (err) {
+                showToast(`请求失败: ${err.message}`, 'error');
+            }
+        }
+
+        // 下载ISO
+        async function downloadISO() {
+            if (!systemStatus.discPresent) {
+                showToast('请先放入光盘', 'error');
+                return;
+            }
+
+            showToast('正在创建ISO镜像，请稍候...', 'success');
+
+            try {
+                window.location.href = `${API_BASE}/api/disc/iso`;
+            } catch (err) {
+                showToast(`下载失败: ${err.message}`, 'error');
+            }
+        }
+
+        // 加载光盘文件
+        async function loadDiscFiles() {
+            if (!systemStatus.discPresent) {
+                showToast('请先放入光盘', 'error');
+                return;
+            }
+
+            const btn = document.getElementById('loadFilesBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<div class="spinner"></div> 读取中...';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/disc/files`);
+                const data = await response.json();
+
+                if (data.success) {
+                    renderFilesList(data.files);
+                    document.getElementById('filesCount').textContent = 
+                        `${data.totalFiles} 个文件 (${data.totalSizeFormatted})`;
+                    showToast(`已读取 ${data.totalFiles} 个文件`, 'success');
+                } else {
+                    showToast(data.error || '读取失败', 'error');
+                    document.getElementById('filesList').innerHTML = 
+                        `<div class="text-[#f85149] text-center py-12">${data.error}</div>`;
+                }
+            } catch (err) {
+                showToast(`请求失败: ${err.message}`, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/>
+                    </svg>
+                    列出文件
+                `;
+            }
+        }
+
+        // 渲染文件列表
+        function renderFilesList(files) {
+            const container = document.getElementById('filesList');
+            
+            if (files.length === 0) {
+                container.innerHTML = '<div class="text-[#6e7681] text-center py-12">光盘为空</div>';
+                return;
+            }
+
+            container.innerHTML = files.map(file => `
+                <div class="file-item group">
+                    <svg class="w-5 h-5 mr-3 text-[#6e7681]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    <div class="flex-1 min-w-0">
+                        <div class="text-sm truncate">${escapeHtml(file.name)}</div>
+                        <div class="text-xs text-[#6e7681] truncate">${escapeHtml(file.path)}</div>
+                    </div>
+                    <div class="text-sm font-mono text-[#8b949e] mr-4">${file.sizeFormatted}</div>
+                    <button onclick="downloadFile('${escapeHtml(file.path)}')" 
+                            class="opacity-0 group-hover:opacity-100 transition-opacity btn btn-secondary py-1 px-3 text-xs">
+                        下载
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // 下载单个文件
+        function downloadFile(path) {
+            window.location.href = `${API_BASE}/api/disc/download?path=${encodeURIComponent(path)}`;
+        }
+
+        // 加载缓存列表
+        async function loadCacheList() {
+            try {
+                const response = await fetch(`${API_BASE}/api/cache/list`);
+                const data = await response.json();
+
+                if (data.success) {
+                    document.getElementById('cacheSize').textContent = data.totalSizeFormatted;
+                    renderCacheList(data.files);
+                }
+            } catch (err) {
+                console.error('加载缓存失败:', err);
+            }
+        }
+
+        // 渲染缓存列表
+        function renderCacheList(files) {
+            const container = document.getElementById('cacheList');
+            
+            if (files.length === 0) {
+                container.innerHTML = '<div class="text-[#6e7681] text-center py-12">缓存为空</div>';
+                return;
+            }
+
+            container.innerHTML = files.map(file => `
+                <div class="file-item group">
+                    <svg class="w-5 h-5 mr-3 text-[#00d4aa]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <div class="flex-1 min-w-0">
+                        <div class="text-sm truncate">${escapeHtml(file.name)}</div>
+                        <div class="text-xs text-[#6e7681]">${file.modified}</div>
+                    </div>
+                    <div class="text-sm font-mono text-[#8b949e] mr-4">${file.sizeFormatted}</div>
+                    <button onclick="deleteCacheFile('${escapeHtml(file.name)}')" 
+                            class="opacity-0 group-hover:opacity-100 transition-opacity text-[#f85149] hover:text-white text-xs">
+                        删除
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // 删除缓存文件
+        async function deleteCacheFile(filename) {
+            try {
+                const response = await fetch(`${API_BASE}/api/cache/delete`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ filename })
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    showToast('文件已删除', 'success');
+                    loadCacheList();
+                } else {
+                    showToast(data.error || '删除失败', 'error');
+                }
+            } catch (err) {
+                showToast(`请求失败: ${err.message}`, 'error');
+            }
+        }
+
+        // 清空缓存
+        async function clearCache() {
+            if (!confirm('确定要清空所有缓存文件吗？')) return;
+
+            try {
+                const response = await fetch(`${API_BASE}/api/cache/clear`, {
+                    method: 'POST'
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    showToast('缓存已清空', 'success');
+                    loadCacheList();
+                } else {
+                    showToast(data.error || '清空失败', 'error');
+                }
+            } catch (err) {
+                showToast(`请求失败: ${err.message}`, 'error');
+            }
+        }
+
+        // 检查刻录状态
+        async function checkBurnStatus() {
+            try {
+                const response = await fetch(`${API_BASE}/api/burn/check`);
+                const data = await response.json();
+
+                const checkList = document.getElementById('burnCheckList');
+                
+                if (data.ready) {
+                    checkList.innerHTML = `
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 text-[#3fb950]">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span>光驱就绪</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-[#3fb950]">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span>光盘可写</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-[#3fb950]">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                                <span>缓存文件已就绪</span>
+                            </div>
+                            <div class="mt-4 p-3 bg-[#171e27] rounded-lg">
+                                <div class="text-sm text-[#8b949e]">缓存大小: <span class="text-[#00d4aa] font-mono">${data.cacheSizeFormatted}</span></div>
+                                <div class="text-sm text-[#8b949e]">光盘容量: <span class="text-[#00d4aa] font-mono">${data.discCapacityFormatted}</span></div>
+                            </div>
+                        </div>
+                    `;
+                    document.getElementById('burnBtn').disabled = false;
+                } else {
+                    checkList.innerHTML = `
+                        <div class="space-y-3">
+                            ${data.issues.map(issue => `
+                                <div class="flex items-center gap-3 text-[#f85149]">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                    </svg>
+                                    <span>${escapeHtml(issue)}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                    document.getElementById('burnBtn').disabled = true;
+                }
+            } catch (err) {
+                showToast(`检查失败: ${err.message}`, 'error');
+            }
+        }
+
+        // 快速刻录
+        async function quickBurn() {
+            const btn = document.getElementById('burnBtn');
+            const logEl = document.getElementById('burnLog');
+            const progressEl = document.getElementById('burnProgress');
+            const progressBar = document.getElementById('burnProgressBar');
+
+            btn.disabled = true;
+            btn.innerHTML = '<div class="spinner"></div> 刻录中...';
+            logEl.textContent = '正在准备刻录...\n';
+            progressEl.textContent = '0%';
+            progressBar.style.width = '0%';
+
+            try {
+                const response = await fetch(`${API_BASE}/api/burn/quick`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await response.json();
+
+                if (data.success) {
+                    logEl.textContent += `\n刻录成功！\n${data.message}`;
+                    logEl.textContent += `\n光盘类型: ${data.discType}`;
+                    progressEl.textContent = '100%';
+                    progressBar.style.width = '100%';
+                    showToast(data.message, 'success');
+                    
+                    // 清空缓存
+                    setTimeout(() => {
+                        loadCacheList();
+                    }, 2000);
+                } else {
+                    logEl.textContent += `\n错误: ${data.error}`;
+                    if (data.issues) {
+                        logEl.textContent += '\n\n问题列表:\n' + data.issues.join('\n');
+                    }
+                    showToast(data.error, 'error');
+                }
+            } catch (err) {
+                logEl.textContent += `\n请求失败: ${err.message}`;
+                showToast(`刻录失败: ${err.message}`, 'error');
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = `
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z"/>
+                    </svg>
+                    快速刻录
+                `;
+            }
+        }
+
+        // 工具函数
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function showToast(message, type = 'success') {
+            const existing = document.querySelector('.toast');
+            if (existing) existing.remove();
+
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.innerHTML = `
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    ${type === 'success' 
+                        ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>'
+                        : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>'}
+                </svg>
+                <span>${escapeHtml(message)}</span>
+            `;
+            document.body.appendChild(toast);
+
+            setTimeout(() => toast.remove(), 4000);
+        }
+    </script>
+</body>
+</html>
