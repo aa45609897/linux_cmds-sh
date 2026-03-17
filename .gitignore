@@ -2,6 +2,9 @@ venv/
 dist/
 build/
 *.egg-info/
-__pycache__
+__pycache__/
 origin/
 generate/
+local_cache/
+temp_uploads/
+*.db
