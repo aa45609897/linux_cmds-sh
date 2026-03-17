@@ -362,44 +362,72 @@ def download_file():
     if not file_path:
         return jsonify({'success': False, 'error': '未指定文件路径'})
     
-    # 安全检查
+    # 安全检查：防止路径穿越攻击
     if '..' in file_path or file_path.startswith('/'):
         return jsonify({'success': False, 'error': '无效的文件路径'})
     
-    mount_point = Path(tempfile.mkdtemp())
+    real_device = os.path.realpath(CDROM_DEVICE)
+    
+    # 1. 检查是否已经挂载
+    mount_point = None
+    is_already_mounted = False
     
     try:
-        # 挂载
-        mount_result = run_command(f'mount {CDROM_DEVICE} {mount_point}')
-        if not mount_result['success']:
-            return jsonify({'success': False, 'error': '挂载失败'})
+        with open('/proc/mounts', 'r') as f:
+            for line in f:
+                parts = line.split()
+                if len(parts) >= 2 and parts[0] == real_device:
+                    mount_point = parts[1]
+                    is_already_mounted = True
+                    break
+    except:
+        pass
+
+    # 2. 如果未挂载，尝试挂载
+    if not mount_point:
+        mount_point = Path(tempfile.mkdtemp())
+        # 使用 sudo 挂载
+        mount_result = run_command(f"sudo mount -t udf,iso9660 -o ro {real_device} {mount_point} 2>&1")
         
-        file_full_path = mount_point / file_path
+        if not mount_result['success']:
+            try:
+                os.rmdir(mount_point)
+            except:
+                pass
+            return jsonify({'success': False, 'error': '挂载失败: ' + mount_result.get('stderr', '请检查sudo权限')})
+
+    try:
+        file_full_path = Path(mount_point) / file_path
         
         if not file_full_path.exists():
             return jsonify({'success': False, 'error': '文件不存在'})
         
-        # 复制到临时文件
+        # 关键步骤：先将文件复制到临时目录
+        # 这样即使卸载光盘，下载也不会中断
         temp_file = Path(tempfile.mktemp())
         shutil.copy2(file_full_path, temp_file)
         
-        # 卸载
-        run_command(f'umount {mount_point}')
-        
+        # 发送文件
         return send_file(
             temp_file,
             as_attachment=True,
-            download_name=Path(file_path).name
+            download_name=file_full_path.name
         )
         
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)})
     finally:
-        try:
-            run_command(f'umount {mount_point} 2>/dev/null')
-            shutil.rmtree(mount_point)
-        except:
-            pass
+        # 3. 卸载逻辑
+        if not is_already_mounted and mount_point:
+            # 使用 sudo 卸载
+            run_command(f'sudo umount {mount_point} 2>/dev/null')
+            try:
+                if isinstance(mount_point, Path):
+                    os.rmdir(mount_point)
+                else:
+                    os.rmdir(str(mount_point))
+            except:
+                pass
 
 @app.route('/api/disc/iso', methods=['GET'])
 def create_iso():
