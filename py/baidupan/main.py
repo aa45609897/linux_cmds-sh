@@ -37,15 +37,14 @@ from baidu_client import BaiduPanClient
 
 # === 3. 扩展客户端 (无加密版) ===
 class SimpleBaiduPanClient(BaiduPanClient):
-    def upload_raw_file(self, local_raw_path: str, remote_relative_path: str):
+    def upload_raw_file(self, local_raw_path: str, remote_relative_path: str, progress_callback=None):
         """
-        【无加密版】直接分片上传
+        【无加密版】直接分片上传，支持进度回调
         """
         full_path = self._get_full_path(remote_relative_path)
         file_size = os.path.getsize(local_raw_path)
         print(f"[UPLOAD] 开始上传: {local_raw_path} ({file_size} bytes)")
         
-        # 1. 计算所有分片 MD5
         block_list = []
         with open(local_raw_path, 'rb') as f:
             while True:
@@ -55,7 +54,6 @@ class SimpleBaiduPanClient(BaiduPanClient):
         
         block_list_json = json.dumps(block_list)
         
-        # 2. 预上传
         pre_data = {
             "path": full_path, "size": file_size, "isdir": 0, "autoinit": 1,
             "block_list": block_list_json, "rtype": 3
@@ -67,7 +65,7 @@ class SimpleBaiduPanClient(BaiduPanClient):
             
         print(f"[UPLOAD] Precreate OK. ID: {uploadid}, Chunks: {len(block_list)}")
 
-        # 3. 上传分片
+        total_chunks = len(block_list)
         with open(local_raw_path, 'rb') as f:
             for i, md5 in enumerate(block_list):
                 chunk = f.read(self.chunk_size)
@@ -81,9 +79,13 @@ class SimpleBaiduPanClient(BaiduPanClient):
                 resp = requests.post(self.pcs_upload_url, params=upload_params, files=files)
                 if resp.status_code != 200:
                     raise Exception(f"分片 {i} 上传失败: {resp.text}")
-                print(f"[UPLOAD] Chunk {i+1}/{len(block_list)} done.")
+                
+                # === 回调更新进度 ===
+                if progress_callback:
+                    progress_callback(i + 1, total_chunks)
+                else:
+                    print(f"[UPLOAD] Chunk {i+1}/{total_chunks} done.")
 
-        # 4. 创建文件
         create_data = {
             "path": full_path, "size": file_size, "isdir": 0,
             "uploadid": uploadid, "block_list": block_list_json, "rtype": 3
@@ -137,7 +139,8 @@ class UploadTask(Base):
     target_path = Column(String)
     total_size = Column(Integer)
     uploaded_size = Column(Integer, default=0)
-    status = Column(String, default='pending')
+    status = Column(String, default='pending') # pending, ready, uploading_cloud, done, error
+    cloud_progress = Column(Integer, default=0) # 新增：云端上传进度 0-100
 
 class UserDB(Base):
     __tablename__ = 'users'
@@ -176,6 +179,52 @@ def get_current_user(request: Request, db: Session = Depends(get_db)):
         if user and sign == user.password_hash[:10]: return username
     except: pass
     return None
+
+import threading
+
+# 后台任务函数
+def background_cloud_upload(task_id: str, temp_path: str, virtual_path: str):
+    db = SessionLocal()
+    try:
+        task = db.query(UploadTask).filter(UploadTask.task_id == task_id).first()
+        if not task: return
+        
+        # 定义回调函数更新进度
+        def update_progress(current, total):
+            progress = int((current / total) * 100)
+            # 注意：这里需要在新的 session 或同一个 session 中更新
+            # 由于在子线程，使用同一个 session 可能有问题，这里简化处理
+            task.cloud_progress = progress
+            db.commit()
+
+        # 执行上传
+        baidu_client.upload_raw_file(temp_path, virtual_path, progress_callback=update_progress)
+        
+        # 成功后处理
+        new_record = FileRecord(
+            filename=task.filename, 
+            virtual_path=virtual_path, 
+            size=task.total_size, 
+            location='cloud', 
+            baidu_path=virtual_path
+        )
+        db.add(new_record)
+        
+        # 清理临时文件
+        if os.path.exists(temp_path): os.remove(temp_path)
+        
+        task.status = 'done'
+        db.commit()
+        print(f"[BG TASK] Task {task_id} finished.")
+        
+    except Exception as e:
+        print(f"[BG TASK ERROR] {e}")
+        task = db.query(UploadTask).filter(UploadTask.task_id == task_id).first()
+        if task:
+            task.status = 'error'
+            db.commit()
+    finally:
+        db.close()
 
 # === 6. FastAPI App ===
 app = FastAPI()
@@ -330,6 +379,7 @@ async def upload_finish(upload_id: str = Form(), user: str = Depends(get_current
     
     threshold = config.get('local_file_threshold', 10*1024*1024)
     
+    # 重名检查
     existing = db.query(FileRecord).filter(FileRecord.virtual_path == virtual_path).first()
     if existing:
         if existing.location == 'local': os.remove(os.path.join(CACHE_DIR, f"{existing.id}.dat"))
@@ -337,20 +387,34 @@ async def upload_finish(upload_id: str = Form(), user: str = Depends(get_current
         db.commit()
 
     if task.total_size <= threshold:
+        # 小文件：直接存本地，同步执行
         new_record = FileRecord(filename=task.filename, virtual_path=virtual_path, size=task.total_size, location='local')
         db.add(new_record); db.commit(); db.refresh(new_record)
         shutil.move(temp_file_path, os.path.join(CACHE_DIR, f"{new_record.id}.dat"))
+        task.status = 'done'; db.commit()
+        return {"success": True, "status": "done"}
     else:
-        try:
-            baidu_client.upload_raw_file(temp_file_path, virtual_path)
-            new_record = FileRecord(filename=task.filename, virtual_path=virtual_path, size=task.total_size, location='cloud', baidu_path=virtual_path)
-            db.add(new_record); db.commit()
-            os.remove(temp_file_path)
-        except Exception as e:
-            raise HTTPException(500, f"上传失败: {e}")
-
-    task.status = 'done'; db.commit()
-    return {"success": True}
+        # 大文件：启动后台线程上传，立即返回
+        task.status = 'uploading_cloud'
+        db.commit()
+        
+        # 启动线程
+        t = threading.Thread(target=background_cloud_upload, args=(upload_id, temp_file_path, virtual_path))
+        t.start()
+        
+        return {"success": True, "status": "uploading_cloud"}
+    
+# 新增：查询上传状态接口
+@app.get("/api/upload/status")
+async def get_upload_status(upload_id: str, db: Session = Depends(get_db)):
+    task = db.query(UploadTask).filter(UploadTask.task_id == upload_id).first()
+    if not task: raise HTTPException(404)
+    
+    return {
+        "status": task.status,
+        "progress": task.cloud_progress,
+        "filename": task.filename
+    }
 
 # === 下载逻辑 (智能缓存版) ===
 @app.get("/api/download")

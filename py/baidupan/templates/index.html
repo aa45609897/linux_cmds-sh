@@ -362,12 +362,14 @@
                 
                 if (!uploadId) { alert("初始化失败"); modal.hide(); return; }
 
+                // 1. 上传分片到服务器
                 for (let i = 0; i < totalChunks; i++) {
                     const start = i * CHUNK_SIZE;
                     const end = Math.min(file.size, start + CHUNK_SIZE);
                     const chunk = file.slice(start, end);
 
-                    updateProgress(((start) / file.size * 100).toFixed(1), `上传分片 ${i+1}/${totalChunks}`);
+                    // 更新本地分片进度
+                    updateProgress(((start) / file.size * 50).toFixed(1), `上传分片 ${i+1}/${totalChunks} (本地)`);
 
                     const chunkForm = new FormData();
                     chunkForm.append('upload_id', uploadId);
@@ -387,21 +389,54 @@
                     if (!success) { alert("上传失败"); modal.hide(); return; }
                 }
 
-                updateProgress(100, "服务器处理中...");
+                // 2. 通知服务器合并并上传云端
+                updateProgress(50, "服务器接收完成，准备上传云端...");
                 const finishForm = new FormData();
                 finishForm.append('upload_id', uploadId);
                 
                 const finishRes = await (await fetch('/api/upload/finish', {method: 'POST', body: finishForm})).json();
                 
-                if (finishRes.success) { refresh(); } 
-                else { alert("处理失败: " + (finishRes.detail || "未知错误")); }
+                if (finishRes.status === 'uploading_cloud') {
+                    // 3. 进入轮询模式，监控云端上传进度
+                    const checkStatus = async () => {
+                        try {
+                            const statusRes = await (await fetch(`/api/upload/status?upload_id=${uploadId}`)).json();
+                            
+                            if (statusRes.status === 'uploading_cloud') {
+                                // 云端进度占后 50%，前 50% 是本地分片
+                                let totalProgress = 50 + (statusRes.progress / 2);
+                                updateProgress(totalProgress.toFixed(1), `正在上传云端: ${statusRes.progress}%`);
+                                
+                                // 继续轮询
+                                setTimeout(checkStatus, 1000);
+                            } else if (statusRes.status === 'done') {
+                                updateProgress(100, "上传完成");
+                                setTimeout(() => { modal.hide(); refresh(); }, 500);
+                            } else if (statusRes.status === 'error') {
+                                alert("云端上传失败");
+                                modal.hide();
+                            }
+                        } catch(e) {
+                            console.error("状态查询失败", e);
+                            setTimeout(checkStatus, 2000); // 出错重试
+                        }
+                    };
+                    checkStatus(); // 开始轮询
+                    
+                } else if (finishRes.status === 'done') {
+                    // 小文件或瞬间完成
+                    updateProgress(100, "上传完成");
+                    setTimeout(() => { modal.hide(); refresh(); }, 500);
+                } else {
+                    alert("处理失败: " + (finishRes.detail || "未知错误"));
+                    modal.hide();
+                }
             } catch(e) {
                 alert("上传过程出错: " + e);
-            } finally {
                 modal.hide();
             }
         }
-
+        
         function updateProgress(percent, text) {
             document.getElementById('uploadProgressBar').style.width = percent + '%';
             document.getElementById('uploadProgressBar').innerText = percent + '%';

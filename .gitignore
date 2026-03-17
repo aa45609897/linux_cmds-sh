@@ -8,3 +8,4 @@ generate/
 local_cache/
 temp_uploads/
 *.db
+*.m4a
