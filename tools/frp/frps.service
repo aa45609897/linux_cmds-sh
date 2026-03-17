@@ -1,0 +1,15 @@
+[Unit]
+Description=Frp Server Service
+After=network.target
+
+[Service]
+Type=simple
+User=feng1
+Group=feng1
+WorkingDirectory=/home/feng1/disk/tools/frp
+ExecStart=/home/feng1/disk/tools/frp/frps -c /home/feng1/disk/tools/frp/frps.toml
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target

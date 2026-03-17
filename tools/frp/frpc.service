@@ -1,0 +1,19 @@
+[Unit]
+Description=Frp Client Service
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=feng1
+Group=feng1
+WorkingDirectory=/home/feng1/disk/tools/frp
+ExecStart=/home/feng1/disk/tools/frp/frpc -c /home/feng1/disk/tools/frp/frpc.toml
+Restart=on-failure
+RestartSec=5s
+
+# 可选：如果 frpc 依赖网络完全就绪，可以添加网络等待
+# ExecStartPre=/bin/sleep 5
+
+[Install]
+WantedBy=multi-user.target
