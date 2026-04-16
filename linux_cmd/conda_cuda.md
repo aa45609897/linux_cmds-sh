@@ -1,11 +1,18 @@
 ## conda安装
 
 1. sudo wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-2. sudo bash Miniconda3-latest-Linux-x86_64.sh
-3. conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
+2. export INSTALL_PATH="/home/feng1/file/miniconda3"
+3. sudo bash Miniconda3-latest-Linux-x86_64.sh -b -u -p "$INSTALL_PATH"
+4. "$INSTALL_PATH/bin/conda" init
+5. conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/
     conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/
     conda config --set show_channel_urls yes
-4. conda init --reverse $SHELL
+6. conda init --reverse $SHELL
+~/.condarc
+envs_dirs:
+  - /home/feng1/file/conda_envs
+pkgs_dirs:
+  - /home/feng1/file/conda_pkgs
 
 创建新环境：conda create --name py310 python=3.10 
 激活环境：conda activate py310

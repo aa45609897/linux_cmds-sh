@@ -1,0 +1,41 @@
+# config/settings.yaml
+
+# 屏幕与显示设置
+display:
+  monitor_index: 1         # 备用参数，主要依靠下方自动查找进程
+  width: 1920
+  height: 1080
+  game_mode: "borderless" # windowed 或 borderless，代码会自动处理窗口位置
+
+# 截图设置
+capture:
+  target_process_name: "Endfield.exe" # 必须修改为真实的进程名（如 launcher.exe 或游戏主进程名）
+  target_fps: 30                      # 限制截图帧率，避免占用过高 CPU/GPU
+  
+  use_roi: false 
+  
+  # 如果无法找到进程，回退到手动配置的 ROI
+  game_roi:
+    top: 0
+    left: 0
+    width: 1920
+    height: 1080
+
+# 日志设置
+logging:
+  level: "INFO"
+  save_debug_frames: false
+
+model:
+  # 目前使用 YOLOv8 官方预训练模型进行测试
+  # 后续请替换为你自己训练的 endfield.pt
+  path: "models/yolov8n.pt" 
+  
+  # 设备选择: "0" 表示使用第一张显卡 (CUDA)，"cpu" 表示强制使用 CPU
+  # 如果没装 CUDA 或者报错，请改成 "cpu"
+  device: "0" 
+
+inference:
+  conf: 0.5      # 置信度阈值，低于此值不认为是目标
+  iou: 0.5       # NMS IOU 阈值，用于去除重叠框
+  half: true    # 是否使用 FP16 半精度推理 (仅在支持 CUDA 的显卡上开启可加速)

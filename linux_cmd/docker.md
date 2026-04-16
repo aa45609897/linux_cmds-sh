@@ -39,20 +39,28 @@ sudo mkdir -p /etc/docker
 # 创建配置文件
 sudo tee /etc/docker/daemon.json <<-'EOF'
 {
-  "registry-mirrors": [
-    "https://docker.mirrors.ustc.edu.cn",
-    "https://hub-mirror.c.163.com",
-    "https://mirror.baidubce.com",
-    "https://registry.docker-cn.com",
-    "https://docker.mirrors.aliyun.com"
-  ],
-  "exec-opts": ["native.cgroupdriver=systemd"],
-  "log-driver": "json-file",
-  "log-opts": {
-    "max-size": "100m",
-    "max-file": "3"
-  },
-  "storage-driver": "overlay2"
+    "exec-opts": [
+        "native.cgroupdriver=systemd"
+    ],
+    "insecure-registries": [
+        "82.158.230.161:51000",
+        "82.158.230.161:59000"
+    ],
+    "log-driver": "json-file",
+    "log-opts": {
+        "max-file": "3",
+        "max-size": "100m"
+    },
+    "registry-mirrors": [
+        "http://82.158.230.161:51000"
+    ],
+    "runtimes": {
+        "nvidia": {
+            "args": [],
+            "path": "nvidia-container-runtime"
+        }
+    },
+    "storage-driver": "overlay2"
 }
 EOF
 
@@ -81,8 +89,11 @@ sudo systemctl show docker --property Environment
 ```
 5. 管理页面
 ```bash
-# 创建Portainer数据卷
-docker volume create portainer_data
+# 创建目录（如果不存在）
+mkdir -p /home/feng1/data/docker/portainer
+
+# 设置权限（Portainer 容器内用户是 root，通常没问题）
+chmod 755 /home/feng1/data/docker/portainer
 
 # 运行Portainer容器
 docker run -d \
@@ -91,7 +102,7 @@ docker run -d \
   --name portainer \
   --restart=always \
   -v /var/run/docker.sock:/var/run/docker.sock \
-  -v portainer_data:/data \
+  -v /home/feng1/file/docker/portainer:/data \
   portainer/portainer-ce:latest
 ```
 
