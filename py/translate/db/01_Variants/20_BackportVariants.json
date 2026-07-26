@@ -1,0 +1,183 @@
+{
+  "Dragunov": {
+    "Description": "据传由波德日基·德拉贡诺夫制作的多种栓动步枪改装件",
+    "Explanation": "9.3x64mm口径武器变体，配备配套的TKPD弹匣",
+    "ShortName": "Dragunov",
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "TKPD"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "TKPD"
+        ]
+      }
+    },
+    "Weapons": [
+      "T-5000M",
+      "SV-98",
+      "DVL-10",
+      "M700",
+      "VPO-215",
+      "TRG M10",
+      "Mosin Infantry",
+      "Mosin Sniper"
+    ],
+    "Rarity": "Baseline"
+  },
+  "No-Bolt": {
+    "Weapons": [
+      "MXLR"
+    ]
+  },
+  "50Cal": {
+    "Weapons": [
+      "MXLR"
+    ]
+  },
+  "Handy": {
+    "Weapons": [
+      "MXLR"
+    ]
+  },
+  "Quick-scope": {
+    "IndividualChanges": {
+      "MXLR": {
+        "Slots": {
+          "mod_mount": {
+            "Filter": [
+              "M1895/MXLR Ranger Point Precision RHINO 5 inch Quick-scope rail"
+            ]
+          }
+        }
+      }
+    },
+    "Weapons": [
+      "MXLR"
+    ]
+  },
+  "Freedom \"Thing\"": {
+    "Weapons": [
+      "AS VAL MOD.4"
+    ]
+  },
+  "Unbreakable": {
+    "Weapons": [
+      "AS VAL MOD.4"
+    ]
+  },
+  "SMG": {
+    "Weapons": [
+      "AS VAL MOD.4"
+    ]
+  },
+  "Marksman": {
+    "Weapons": [
+      "AK-308"
+    ]
+  },
+  "Light Machine Gun": {
+    "Weapons": [
+      "AK-308"
+    ]
+  },
+  "Experimental": {
+    "Weapons": [
+      "AK-308"
+    ]
+  },
+  "The Unheard Edition": {
+    "Weapons": [
+      "TKPD"
+    ]
+  },
+  "Control-Fire": {
+    "Weapons": [
+      "TKPD"
+    ]
+  },
+  "Hypersonic": {
+    "Weapons": [
+      "TKPD"
+    ]
+  },
+  "Meta": {
+    "Weapons": [
+      "NL545 GP"
+    ]
+  },
+  "Lawn Mower": {
+    "Weapons": [
+      "NL545 GP"
+    ]
+  },
+  "Slowed": {
+    "Weapons": [
+      "NL545 GP"
+    ]
+  },
+  "Pay to Win": {
+    "Weapons": [
+      "NL545 DI"
+    ]
+  },
+  "World War II": {
+    "Weapons": [
+      "NL545 DI"
+    ]
+  },
+  "Modified": {
+    "Weapons": [
+      "NL545 DI"
+    ]
+  },
+  "Black Market": {
+    "Weapons": [
+      "Model 1"
+    ]
+  },
+  "Laser Rifle": {
+    "Weapons": [
+      "Model 1"
+    ]
+  },
+  "Speedy": {
+    "Weapons": [
+      "Model 1"
+    ]
+  },
+  "Endless": {
+    "Weapons": [
+      "M16A1"
+    ]
+  },
+  "Upgraded": {
+    "Weapons": [
+      "M16A1"
+    ]
+  },
+  "Converted": {
+    "Weapons": [
+      "M16A1"
+    ]
+  },
+  "Rifle Grenade Launcher": {
+    "Weapons": [
+      "M16A2"
+    ]
+  },
+  "Fullburst": {
+    "Weapons": [
+      "M16A2"
+    ]
+  },
+  "Overclocked": {
+    "Weapons": [
+      "M16A2"
+    ]
+  }
+}

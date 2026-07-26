@@ -1,0 +1,24 @@
+{
+  "Blicky Special Magical Unbelievable Magazine": {
+    "Description": "一款名为Blicky的玩具枪专用神奇弹匣，可容纳以下口径弹药：\n- 12.7×108毫米（反器材步枪）\n- 7.62×54R（轻机枪）\n- 40×46毫米榴弹（步枪榴弹发射器）\n- 7.62×25TT（二战）\n- 5.56×45北约标准弹（突击步枪）\n- 12/70（恐慌）\n- 9×21（激光）",
+    "ShortName": "SMUM",
+    "ItemTplToClone": "66015dc4aaad2f54cb04c56a",
+    "Changes": {
+      "Cartridges": {
+        "Count": 35,
+        "FromWeapons": [
+          "NSV Utyos",
+          "SVDS",
+          "FN40GL",
+          "TT",
+          "M4A1",
+          "Saiga-12K",
+          "SR-2M"
+        ]
+      }
+    },
+    "HandbookPriceRoubles": 99999,
+    "VariantType": "Anti-materiel Rifle/Light Machine Gun/Rifle Grenade Launcher/World War II/Assault Rifle/Panic/Laser",
+    "Rarity": "Unknown"
+  }
+}

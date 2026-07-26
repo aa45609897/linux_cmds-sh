@@ -1,0 +1,297 @@
+{
+  "PKM Unique (PKM独特)": {
+    "Description": "有人真的很想拥有一把便携式12.7×108毫米口径轻机枪。但问题是，我们不能让随便什么人都掌握这种力量，所以我们把这件武器做成了一种折中的好选择。",
+    "Explanation": "PKM >重型氪金枪<\n这款独特变体融合了重型机枪变体的最佳特性——降低后坐力与提升射速——以及氪金变体的.50 BMG口径。更不必说，我们还为其配备了100发容量的.50 BMG弹匣！",
+    "ShortName": ">Heavy P2W Gun<",
+    "Properties": {
+      "RecoilForceBack": "+150%",
+      "RecoilForceUp": "-60%",
+      "WeapFireType": [
+        "fullauto"
+      ],
+      "BFirerate": "+20%",
+      "RecoilCamera": "+15%"
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "PK .50 BMG 100-round box",
+            "Pay to Win Variant 5-round magazine",
+            "Pay to Win Variant 20-round magazine",
+            "Pay to Win Variant 30-round magazine",
+            "Pay to Win Variant 50-round magazine"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "AK-50"
+        ]
+      }
+    },
+    "Weapons": [
+      "PKM"
+    ],
+    "Rarity": "Unique"
+  },
+  "AK-74 Unique (AK-74独特版)": {
+    "Description": "当你不用全自动模式射击这把武器时，卡拉什尼科夫会在坟墓里翻身，产生的能量足以供应一座中型城市。",
+    "Explanation": "AK-74 >超频元变体<  \n这款独特变体融合了超频变体的最佳特性——射速与枪械冷却能力——以及元变体的属性参数。",
+    "ShortName": ">Overclocked Meta<",
+    "Properties": {
+      "RecoilForceUp": "-25%",
+      "RecoilForceBack": "-10%",
+      "RecoilReturnSpeedHandRotation": "+10%",
+      "RecoilCamera": "-10%",
+      "RecoilDampingHandRotation": "-10%",
+      "RecoilReturnPathDampingHandRotation": "-10%",
+      "Ergonomics": "+15",
+      "RecoilStableIndexShot": 4,
+      "HeatFactorByShot": "-25%",
+      "CoolFactorGun": "+50%",
+      "CoolFactorGunMods": 1,
+      "SingleFireRate": "+35%",
+      "BFirerate": "+35%",
+      "Weight": "+20%"
+    },
+    "Weapons": [
+      "AK-74"
+    ],
+    "Rarity": "Unique"
+  },
+  "G36 Unique (G36独特)": {
+    "Description": "你是否厌倦了因为弹匣只能适配少数武器而频繁更换？是否厌倦了为手中所有武器管理不同口径的烦恼？这把枪对这些难题大声说：\"不再！\"",
+    "Explanation": "G36 >全口径<  \n这款独特的变体可以直接使用所有弹匣和所有子弹！",
+    "ShortName": ">All caliber<",
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "Add": [
+            "5448bc234bdc2d3c308b4569"
+          ]
+        }
+      },
+      "Chambers": {
+        "Add": [
+          "5485a8684bdc2da71d8b4567"
+        ]
+      }
+    },
+    "Weapons": [
+      "G36"
+    ],
+    "Rarity": "Unique"
+  },
+  "AXMC Unique (AXMC独特)": {
+    "Description": "极速、小巧、可随身携带。重点不在武器，而在那蓝色生物身上。我完全不明白它为何会出现在这里……我们必须……\n>>> 终结它的痛苦 <<<\n*正将其装入枪中*",
+    "Explanation": "AXMC >便携式超音速型<  \n这款独特变体融合了便携型的核心优势——人体工学设计、可装入枪套槽的口袋尺寸——以及超音速型惊人的枪口初速。",
+    "ShortName": ">Sonic<",
+    "Properties": {
+      "Ergonomics": 78,
+      "Weight": "-92%",
+      "Velocity": 350,
+      "CenterOfImpact": 0.01
+    },
+    "Changes": {
+      "AddtoInventorySlots": [
+        "Holster"
+      ]
+    },
+    "Weapons": [
+      "AXMC"
+    ],
+    "Rarity": "Unique"
+  },
+  "M700 Unique (M700独特)": {
+    "Description": "当你手头好枪不多，却仍想玩一把，同时还想在选枪时发挥点创意的时候。",
+    "Explanation": "M700 >M4A1 无枪机版<  \n这款独特变体拥有M4A1的属性，配备匹配的弹匣，并采用单发点射模式。",
+    "ShortName": ">Standardized<",
+    "Properties": {
+      "WeapClass": "assaultRifle",
+      "Weight": 0.38,
+      "SingleFireRate": 450,
+      "RecoilDampingHandRotation": 0.85,
+      "RecoilForceBack": 342,
+      "RecoilForceUp": 119,
+      "RecoilPosZMult": 1,
+      "RecoilReturnPathDampingHandRotation": 0.48,
+      "RecoilReturnPathOffsetHandRotation": 0.01,
+      "RecoilReturnSpeedHandRotation": 2.5,
+      "RecoilStableAngleIncreaseStep": 2.4,
+      "RecoilStableIndexShot": 5,
+      "RecolDispersion": 1,
+      "RecoilCamera": 0.04,
+      "RecoilCategoryMultiplierHandRotation": 0.19,
+      "HeatFactorByShot": 1.235,
+      "HeatFactorGun": 1,
+      "DropSoundType": "Rifle",
+      "ItemSound": "weap_ar",
+      "Durability": 100,
+      "DurabilityBurnRatio": 1.15,
+      "Ergonomics": 48,
+      "CoolFactorGun": 3.168,
+      "CenterOfImpact": 0.01,
+      "AimPlane": 0.16,
+      "AimSensitivity": 0.65,
+      "WeapFireType": [
+        "burst"
+      ],
+      "BurstShotsCount": 1,
+      "BFirerate": 800
+    },
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "M4A1"
+        ]
+      },
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "M4A1"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "M700"
+    ],
+    "Rarity": "Unique"
+  },
+  "AKMS Unique (AKMS独特型)": {
+    "Description": "一把破旧的老式武器，在其服役期间经过数次升级，如今已臻于完美。",
+    "Explanation": "AKMS >实际元数据<  \n这一独特变体的属性远优于其元数据版本。",
+    "ShortName": ">Overpowered<",
+    "Properties": {
+      "RecoilForceUp": "-50%",
+      "RecoilForceBack": "-20%",
+      "RecoilReturnSpeedHandRotation": "+20%",
+      "RecoilCamera": "-20%",
+      "RecoilDampingHandRotation": "-20%",
+      "RecoilReturnPathDampingHandRotation": "-20%",
+      "Ergonomics": "+50",
+      "RecoilStableIndexShot": 3,
+      "HeatFactorByShot": "-50%"
+    },
+    "Weapons": [
+      "AKMS"
+    ],
+    "Rarity": "Unique"
+  },
+  "M1A Unique (M1A独特)": {
+    "Description": "“耶稣，拿好全自动武器”",
+    "Explanation": "M1A >快速控制射击<\n这一独特变体拥有特殊的无后坐力全自动射击模式，且射速远超其前代型号。",
+    "ShortName": ">Faster Control-Fire<",
+    "Properties": {
+      "BFirerate": 333,
+      "WeapFireType": [
+        "fullauto"
+      ],
+      "RecoilStableIndexShot": 0,
+      "RecoilForceBack": "+35%"
+    },
+    "Weapons": [
+      "M1A"
+    ],
+    "Rarity": "Unique"
+  },
+  "APB Unique (APB独特物品)": {
+    "Description": "尽量不要透过瞄准镜去看。感谢您的配合！",
+    "Explanation": "APB >俄罗斯突击兵<\n这款独特变体配备特殊瞄准镜，拥有独特属性，使用.366 TKM口径弹药\n每10名俄罗斯突击兵中就有9人选择.366 TKM作为他们最爱的弹药——太惊人了！",
+    "ShortName": ">Stormtrooper<",
+    "Properties": {
+      "RecoilStableIndexShot": 1,
+      "RecoilForceUp": 0,
+      "RecoilForceBack": 0,
+      "RecoilCamera": 0,
+      "Velocity": 400
+    },
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "VPO-209"
+        ]
+      },
+      "Slots": {
+        "mod_sight_front": {
+          "Filter": [
+            "Nightforce Magmount 34mm ring scope mount for Stormtrooper Use Only"
+          ]
+        },
+        "mod_magazine": {
+          "FromWeapons": [
+            "VPO-209"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "APB"
+    ],
+    "Rarity": "Unique"
+  },
+  "STM-9 Unique (STM-9独特)": {
+    "Description": "全自动FURY随时听候您的差遣",
+    "Explanation": "STM-9 >自动狂怒型<  \n这款独特型号融合了自动型与狂怒型的特性。除采用.277 FURY（6.8×51毫米）口径外，还具备全自动及特殊的二连发点射模式。",
+    "ShortName": ">Automatic FURY<",
+    "Properties": {
+      "WeapFireType": [
+        "burst",
+        "fullauto"
+      ],
+      "BFirerate": "+10%",
+      "BurstShotsCount": 2
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "SPEAR 6.8"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "SPEAR 6.8"
+        ]
+      }
+    },
+    "Weapons": [
+      "STM-9"
+    ],
+    "Rarity": "Unique"
+  },
+  "AS VAL Unique (AS VAL独特)": {
+    "Description": "点击无问题——保证！否则退款！",
+    "Explanation": "AS VAL >坚不可摧的点射模式<  \n这款独特变体允许在发射特殊点射模式时不会对武器造成损伤。",
+    "ShortName": ">Unbreakable P&C<",
+    "Properties": {
+      "WeapFireType": [
+        "burst"
+      ],
+      "BFirerate": "+400%",
+      "RecoilForceBack": "-80%",
+      "RecoilForceUp": "-80%",
+      "RecoilCamera": "-80%",
+      "AimPlane": "-80%",
+      "RecolDispersion": "-80%",
+      "RecoilReturnPathDampingHandRotation": "-80%",
+      "RecoilDampingHandRotation": "-80%",
+      "RecoilReturnSpeedHandRotation": "+80%",
+      "CenterOfImpact": 0.01,
+      "BurstShotsCount": 5,
+      "MaxRepairKitDegradation": 0,
+      "DurabilityBurnRatio": 0,
+      "HeatFactorByShot": 0,
+      "AllowJam": false,
+      "AllowFeed": false,
+      "AllowMisfire": false,
+      "AllowSlide": false
+    },
+    "Weapons": [
+      "AS VAL"
+    ],
+    "Rarity": "Unique"
+  }
+}

@@ -1,0 +1,431 @@
+{
+  "Fullburst": {
+    "Description": "扳机损坏且可能卡住，导致单次扣动几乎清空整个弹匣——也可能中途卡壳。全自动连发，但时灵时不灵。",
+    "Explanation": "仅支持30发连发模式的武器变体，射速与后坐力降低，但因热量积聚更快导致卡壳概率上升。",
+    "ShortName": "Fullburst",
+    "Properties": {
+      "WeapFireType": [
+        "burst"
+      ],
+      "BFirerate": 450,
+      "RecoilForceUp": "-50%",
+      "RecoilForceBack": "-30%",
+      "RecoilDampingHandRotation": "-95%",
+      "RecoilReturnSpeedHandRotation": "+95%",
+      "BurstShotsCount": 30,
+      "HeatFactorByShot": "+20%",
+      "CoolFactorGun": "+50%",
+      "RecoilStableIndexShot": 3
+    },
+    "Weapons": [
+      "Mk-18 Mjölnir",
+      "AK-74",
+      "AKS-74N",
+      "AK-102",
+      "AUG A1",
+      "M4A1",
+      "RD-704",
+      "MDR 7.62x51",
+      "SA-58",
+      "RSASS",
+      "SPEAR 6.8",
+      "9A-91",
+      "ASh-12",
+      "MP5K-N",
+      "STM-9",
+      "SR-2M",
+      "MP7A1",
+      "AA-12 Gen 1",
+      "UZI",
+      "Saiga-12K FA",
+      "X-17"
+    ],
+    "Rarity": "Meme"
+  },
+  "Experimental": {
+    "Description": "他们对这把武器做了各种事：触碰禁忌部位，用拇指扣动扳机，在枪管里涂凡士林，还把它漆成粉色。简直是噩梦素材！",
+    "Explanation": "武器变体：故障概率提升但不会出现哑火故障，耐久度消耗增加，射速提升且无后坐力。仅支持全自动射击模式。",
+    "ShortName": "Experimental",
+    "Properties": {
+      "WeapFireType": [
+        "fullauto"
+      ],
+      "BaseMalfunctionChance": "+500%",
+      "DurabilityBurnRatio": "+500%",
+      "HeatFactorByShot": "-60%",
+      "AllowMisfire": false,
+      "RecoilStableIndexShot": 1,
+      "BFirerate": "+35%"
+    },
+    "Weapons": [
+      "AK-74M",
+      "AK-102",
+      "Mk 16",
+      "M4A1",
+      "AKMN",
+      "RPD",
+      "Mk 17",
+      "RSASS",
+      "SPEAR 6.8",
+      "PP-91-01 Kedr-B",
+      "MP9-N",
+      "P90",
+      "SR-3M",
+      "M60E6",
+      "Desert Eagle L6",
+      "Velociraptor .300 BLK"
+    ],
+    "Rarity": "Meme"
+  },
+  "Slav \"Thing\"": {
+    "Description": "能用就别动，坏了就上扳手——经典斯拉夫工程学。",
+    "Explanation": "7.62x39毫米口径的武器变体，稳定性提升，后坐力与散布增加，人机功效降低",
+    "ShortName": "v2.0-Slav",
+    "Properties": {
+      "RecoilStableIndexShot": 10,
+      "RecolDispersion": 25,
+      "RecoilForceUp": "+45%",
+      "Ergonomics": "-25"
+    },
+    "Changes": {
+      "Minimum": {
+        "BFirerate": 650
+      },
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "RPD",
+            "AKM"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "AKM"
+        ]
+      }
+    },
+    "Weapons": [
+      "HK 416A5",
+      "AUG A3",
+      "MDR 5.56x45",
+      "M4A1",
+      "G36",
+      "ADAR 2-15",
+      "TX-15 DML"
+    ],
+    "Rarity": "Meme"
+  },
+  "Freedom \"Thing\"": {
+    "Description": "如果它管用，就别质疑它。如果它不管用，就打到它管用为止。经典美式工程学。",
+    "Explanation": "5.56x45mm NATO口径武器变体，后坐力降低，人机工程学与射速提升，但稳定点增加。",
+    "ShortName": "v2.0-Freedom",
+    "Properties": {
+      "RecoilForceUp": "-22%",
+      "RecoilForceBack": "-22%",
+      "Ergonomics": "+22",
+      "RecoilStableIndexShot": 10,
+      "BFirerate": 800
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "M4A1"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "M4A1"
+        ]
+      }
+    },
+    "Weapons": [
+      "VPO-209",
+      "AKS-74UB",
+      "AK-105",
+      "AK-545",
+      "RPK-16",
+      "AK-12",
+      "AK-74N",
+      "RPDN",
+      "AKMS",
+      "VPO-136 Vepr-KM",
+      "AKM",
+      "VSS Vintorez"
+    ],
+    "Rarity": "Meme"
+  },
+  "Lawn Mower": {
+    "Description": "BRRRRRRRRRRRR——草地没了。敌人没了。你的听觉也没了。",
+    "Explanation": "射速提升近三倍、后坐力降低且无热量积累的武器变体，但散布和子弹速度较差。",
+    "ShortName": "BRRRR",
+    "Properties": {
+      "WeapFireType": [
+        "fullauto"
+      ],
+      "RecolDispersion": 100,
+      "HeatFactorByShot": 0,
+      "BFirerate": "+150%",
+      "AimPlane": "+333%",
+      "Velocity": -50,
+      "RecoilForceUp": "-90%"
+    },
+    "Changes": {
+      "Minimum": {
+        "BFirerate": 450
+      }
+    },
+    "Weapons": [
+      "MCX .300 BLK",
+      "AKS-74",
+      "M4A1",
+      "AK-103",
+      "Mk47",
+      "PKM",
+      "PKP",
+      "VSK-94",
+      "MPX",
+      "Vector .45ACP",
+      "Mk 43 Mod 1",
+      "AA-12 Gen 2",
+      "UZI PRO Pistol"
+    ],
+    "Rarity": "Meme"
+  },
+  "Pistol": {
+    "Description": "专为手枪任务设计的武器变体，专为那些不喜欢使用真正手枪的人量身定制",
+    "Explanation": "精度和操控性显著提升的栓动步枪，但采用9x18毫米手枪口径",
+    "ShortName": "\"Pistol\"",
+    "Properties": {
+      "AmmoCaliber": "Caliber9x18PM",
+      "DropSoundType": "Pistol",
+      "WeapUseType": "secondary",
+      "CenterOfImpact": 0.01,
+      "Ergonomics": "+50",
+      "Velocity": "+20",
+      "Weight": "-90%"
+    },
+    "Changes": {
+      "AddtoInventorySlots": [
+        "Holster"
+      ],
+      "Minimum": {
+        "BFirerate": 450
+      },
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "PM"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "PM"
+        ]
+      }
+    },
+    "WeaponIdToUseAs": "5448bd6b4bdc2dfc2f8b4569",
+    "Weapons": [
+      "Mosin Infantry",
+      "T-5000M",
+      "SV-98",
+      "AXMC",
+      "VPO-215"
+    ],
+    "Rarity": "Meme"
+  },
+  "Desert": {
+    "Description": "专为手枪任务设计的武器变体，适合那些不喜欢使用真正手枪的玩家。沙漠版",
+    "Explanation": "显著提升精度与操控性的栓动步枪，但采用.50 AE手枪口径。",
+    "ShortName": "\"Desert\"",
+    "Properties": {
+      "AmmoCaliber": "Caliber127x33",
+      "DropSoundType": "Pistol",
+      "WeapUseType": "secondary",
+      "CenterOfImpact": 0.01,
+      "Ergonomics": "+40",
+      "Velocity": "+15",
+      "Weight": "-70%"
+    },
+    "Changes": {
+      "AddtoInventorySlots": [
+        "Holster"
+      ],
+      "Minimum": {
+        "BFirerate": 450
+      },
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "Desert Eagle Mk XIX"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "Desert Eagle Mk XIX"
+        ]
+      }
+    },
+    "WeaponIdToUseAs": "668fe5a998b5ad715703ddd6",
+    "Weapons": [
+      "Mosin Sniper",
+      "DVL-10",
+      "M700",
+      "TRG M10"
+    ],
+    "Rarity": "Meme"
+  },
+  "BFG-50": {
+    "Description": "BFG-50是马克·瑟布设计的第一款步枪，于1999年底投入生产。它在民用市场上的售价为2000至3000美元，但并未被世界上任何武装部队所采用。",
+    "Explanation": ".50 BMG口径的武器变体，后坐力显著增加，人体工程学略有提升，弹匣容量仅为1发。",
+    "ShortName": "BFG-50",
+    "Properties": {
+      "RecoilForceUp": "+400%",
+      "RecoilForceBack": "+400%",
+      "Ergonomics": "+20",
+      "ReloadMode": "OnlyBarrel"
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "Filter": []
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "AK-50"
+        ]
+      }
+    },
+    "Weapons": [
+      "Mosin Sniper",
+      "AXMC",
+      "M700",
+      "OP-SKS",
+      "SVT-40",
+      "AVT-40",
+      "FN40GL",
+      "TRG M10",
+      "SKS",
+      "M1A",
+      "RFB",
+      "AK-104"
+    ],
+    "Rarity": "Meme"
+  },
+  "Laser Rifle": {
+    "Description": "“这是我第三次尝试制作激光步枪了。事不过三？”\n*咔哒声*\n“不是……哦，原来没打开！现在总行了吧？”\n*小型爆炸*\n“哦，靠！”",
+    "Explanation": "9x21毫米口径的武器变体，以惊人的射速和更高的初速进行三发点射。",
+    "ShortName": "Laser",
+    "Properties": {
+      "WeapFireType": [
+        "burst"
+      ],
+      "BFirerate": 5450,
+      "BurstShotsCount": 3,
+      "RecoilStableIndexShot": 1,
+      "Velocity": "+100"
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "SR-2M"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "SR-2M"
+        ]
+      }
+    },
+    "IndividualChanges": {
+      "Blicky": {
+        "Slots": {
+          "mod_magazine": {
+            "Filter": [
+              "Blicky Special Magical Unbelievable Magazine"
+            ]
+          }
+        }
+      }
+    },
+    "Weapons": [
+      "AKS-74UN",
+      "AK-545 Short",
+      "AKMSN",
+      "AS VAL",
+      "PPSh-41",
+      "PP-91 Kedr",
+      "PP-9 Klin",
+      "MP9",
+      "PP-19-01",
+      "Saiga-9",
+      "MP5",
+      "Vector 9x19",
+      "UMP 45",
+      "MP7A2",
+      "UZI PRO SMG",
+      "AK-50",
+      "Blicky"
+    ],
+    "Rarity": "Meme"
+  },
+  "Converted": {
+    "Description": "我们已成功将你那弱鸡般的霰弹枪和手枪改装成了中规中矩的突击步枪，或者别的什么玩意儿，反正我也无所谓……",
+    "Explanation": "9x39毫米口径武器变体，耐久燃烧性能提升",
+    "ShortName": "Converted",
+    "Changes": {
+      "Minimum": {
+        "DurabilityBurnRatio": 1.15,
+        "HeatFactorByShot": 2.17,
+        "HeatFactorGun": 1.11
+      },
+      "Slots": {
+        "mod_magazine": {
+          "BasedOn": {
+            "Property": "ReloadMode",
+            "Cases": {
+              "ExternalMagazine": {
+                "FromWeapons": [
+                  "VSS Vintorez"
+                ]
+              },
+              "InternalMagazine": {
+                "Filter": [
+                  "Converted Variant 9x39 Shotgun 15-round magazine"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "VSS Vintorez"
+        ]
+      }
+    },
+    "Weapons": [
+      "MP-133",
+      "M870",
+      "M3 Super 90",
+      "MP-43-1C",
+      "MP-153",
+      "MP-155",
+      "TOZ-106",
+      "SR-25",
+      "MP-18",
+      "Glock 19X",
+      "M9A3",
+      "M45A1",
+      "Desert Eagle L5 .50 AE"
+    ],
+    "Rarity": "Meme"
+  }
+}

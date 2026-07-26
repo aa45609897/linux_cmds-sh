@@ -1,0 +1,218 @@
+{
+  "Pocket-size (袖珍型)": {
+    "Description": "非法小型枪支。不要持枪。",
+    "Explanation": "这把武器可单手使用，并能装备在枪套槽位中。它提升了人体工程学性能，且几乎毫无重量！",
+    "ShortName": "smol",
+    "Properties": {
+      "Ergonomics": "+20%",
+      "Weight": "-92%"
+    },
+    "Changes": {
+      "AddtoInventorySlots": [
+        "Holster"
+      ]
+    },
+    "Weapons": [
+      "FN40GL",
+      "MSGL",
+      "AXMC",
+      "AKMSN",
+      "M60E6",
+      "Velociraptor .300 BLK"
+    ],
+    "Rarity": "Niche"
+  },
+  "Rifle Grenade Launcher (步枪枪榴弹发射器)": {
+    "Description": "- 这就像个下挂式榴弹发射器，不过其实是装在枪管里的榴弹发射器！  \n- 你是说枪榴弹……？  \n- 正是我想的那个！",
+    "Explanation": "武器变体附加型，采用40毫米榴弹口径，枪口初速略有提升。所以，当你弹药耗尽时，只需将榴弹发射器弹药直接装入弹膛即可！",
+    "ShortName": "R.Grenade",
+    "Properties": {
+      "Velocity": 50
+    },
+    "Changes": {
+      "Chambers": {
+        "Add": [
+          "5ede474b0c226a66f5402622",
+          "5ede475b549eed7c6d5c18fb",
+          "5ede4739e0350d05467f73e8",
+          "5f0c892565703e5c461894e9",
+          "5ede47405b097655935d7d16",
+          "5ede475339ee016e8c534742",
+          "5ede47641cf3836a88318df1",
+          "5d70e500a4b9364de70d38ce"
+        ]
+      }
+    },
+    "IndividualChanges": {
+      "Blicky": {
+        "Slots": {
+          "mod_magazine": {
+            "Filter": [
+              "Blicky Special Magical Unbelievable Magazine"
+            ]
+          }
+        }
+      },
+      "AXMC": {
+        "Slots": {
+          "mod_magazine": {
+            "Filter": [
+              "Multi-caliber Rifle Grenade Launcher 7-round internal magazine"
+            ]
+          }
+        }
+      },
+      "OP-SKS": {
+        "Slots": {
+          "mod_magazine": {
+            "Filter": [
+              "Multi-caliber Rifle Grenade Launcher 7-round internal magazine"
+            ]
+          }
+        }
+      },
+      "Mosin Infantry": {
+        "Slots": {
+          "mod_magazine": {
+            "Filter": [
+              "Multi-caliber Rifle Grenade Launcher 7-round internal magazine"
+            ]
+          }
+        }
+      },
+      "TRG M10": {
+        "Slots": {
+          "mod_magazine": {
+            "Filter": [
+              "Multi-caliber Rifle Grenade Launcher 7-round internal magazine"
+            ]
+          }
+        }
+      }
+    },
+    "Weapons": [
+      "MP-43-1C",
+      "MP-18",
+      "Blicky",
+      "AXMC",
+      "Mk-18 Mjölnir",
+      "OP-SKS",
+      "SV-98",
+      "Mosin Infantry",
+      "AK-545 Short",
+      "ADAR 2-15",
+      "TRG M10",
+      "AK-50"
+    ],
+    "Rarity": "Niche"
+  },
+  "Bombardier (庞巴迪)": {
+    "Description": "神赐予了这把武器一个非常巨大的...圆柱体。以及荒谬绝伦的火力！",
+    "Explanation": "一把梦想成为榴弹发射器的左轮手枪",
+    "ShortName": "Bombardier",
+    "Properties": {
+      "AmmoCaliber": "Caliber40x46"
+    },
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "FN40GL"
+        ]
+      },
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "M32A1 40mm 6-round Bombardier cylinder"
+          ]
+        }
+      }
+    },
+    "IndividualChanges": {
+      "MTs-255-12": {
+        "Slots": {
+          "mod_magazine": {
+            "Filter": [
+              "M32A1 40mm 5-round Bombardier cylinder"
+            ]
+          }
+        }
+      },
+      "RSh-12": {
+        "Slots": {
+          "mod_magazine": {
+            "Filter": [
+              "M32A1 40mm 5-round Bombardier cylinder"
+            ]
+          }
+        }
+      }
+    },
+    "Weapons": [
+      "RSh-12",
+      "CR 50DS",
+      "CR 200DS",
+      "MTs-255-12"
+    ],
+    "Rarity": "Niche"
+  },
+  "Holster (枪套)": {
+    "Description": "\"研发膨胀了你的口袋维度\" ~艾达",
+    "Explanation": "冲锋枪变体，以射速换取更高的人体工程学及可放入手枪套槽位的能力",
+    "ShortName": "Holster",
+    "Properties": {
+      "BFirerate": "-25%",
+      "Ergonomics": "+35"
+    },
+    "Changes": {
+      "AddtoInventorySlots": [
+        "Holster"
+      ]
+    },
+    "Weapons": [
+      "PPSh-41",
+      "PP-91-01 Kedr-B",
+      "Vector 9x19",
+      "Vector .45ACP",
+      "STM-9",
+      "MP7A2",
+      "P90",
+      "UZI PRO SMG",
+      "UMP 45"
+    ],
+    "Rarity": "Niche"
+  },
+  "Glass Cannon (玻璃大炮)": {
+    "Description": "它既不是玻璃做的，也不是真正的大炮——但你看它。开火时，它绝对是大炮；检查耐久度时，它又绝对是玻璃。",
+    "Explanation": ".50 BMG口径的霰弹枪变体，弹匣容量1发。耐久伤害提升，但可装备在手枪栏位。",
+    "ShortName": "Glass Cannon",
+    "Properties": {
+      "DurabilityBurnRatio": "+1500%"
+    },
+    "Changes": {
+      "AddtoInventorySlots": [
+        "Holster"
+      ],
+      "Chambers": {
+        "FromWeapons": [
+          "AK-50"
+        ]
+      },
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "Glass Cannon .50BMG 1-shell magazine"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "KS-23M",
+      "MP-153",
+      "MP-155",
+      "M870",
+      "590A1",
+      "MP-133"
+    ],
+    "Rarity": "Niche"
+  }
+}

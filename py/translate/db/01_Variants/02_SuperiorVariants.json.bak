@@ -1,0 +1,597 @@
+{
+  "Automatic (自动)": {
+    "Description": "快慢机卡在了一个不存在的档位上",
+    "Explanation": "仅具备全自动射击模式的武器变体，射速提升但人机工程学性能降低。",
+    "ShortName": "Auto",
+    "Properties": {
+      "WeapFireType": [
+        "fullauto"
+      ],
+      "BFirerate": "+10%",
+      "Ergonomics": "-15%"
+    },
+    "Changes": {
+      "Minimum": {
+        "BFirerate": 450
+      }
+    },
+    "IndividualChanges": {
+      "Saiga-12K": {
+        "Properties": {
+          "ShotgunDispersion": 1
+        }
+      }
+    },
+    "Weapons": [
+      "TX-15 DML",
+      "G28",
+      "M1A",
+      "Mk-18 Mjölnir",
+      "RSASS",
+      "SR-25",
+      "SVDS",
+      "OP-SKS",
+      "RFB",
+      "AK-545",
+      "AK-545 Short",
+      "VPO-101 Vepr-Hunter",
+      "VPO-209",
+      "ADAR 2-15",
+      "STM-9",
+      "FN 5-7",
+      "M9A3",
+      "M45A1",
+      "PL-15",
+      "TT",
+      "Desert Eagle L5 .357",
+      "Desert Eagle Mk XIX",
+      "Saiga-12K",
+      "Glock 17",
+      "AK-50"
+    ],
+    "Rarity": "Superior"
+  },
+  "Marksman (神射手)": {
+    "Description": "为应对弹药价格高昂的问题，该武器已移除全自动射击模式。因此，它如今在中距离交战中表现出色。",
+    "Explanation": "武器变体，射击模式改为单发/连发，后坐力降低且无武器故障。",
+    "ShortName": "Marksman",
+    "Properties": {
+      "WeapFireType": [
+        "single",
+        "burst"
+      ],
+      "SingleFireRate": 400,
+      "RecoilForceBack": "-30%",
+      "RecoilForceUp": "-20%",
+      "RecoilDampingHandRotation": "-30%",
+      "RecoilReturnSpeedHandRotation": "-30%",
+      "BurstShotsCount": 2,
+      "AllowJam": false,
+      "AllowFeed": false,
+      "AllowMisfire": false,
+      "AllowSlide": false
+    },
+    "IndividualChanges": {
+      "M60E6": {
+        "Properties": {
+          "WeapFireType": [
+            "single"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "MCX .300 BLK",
+      "SPEAR 6.8",
+      "Mk47",
+      "SA-58",
+      "Mk 17",
+      "Mk 16",
+      "AK-12",
+      "AK-74N",
+      "AK-103",
+      "MDR 7.62x51",
+      "VSS Vintorez",
+      "P90",
+      "M4A1",
+      "AK-105",
+      "AKM",
+      "ASh-12",
+      "M60E6"
+    ],
+    "Rarity": "Superior"
+  },
+  "Handy (便携式)": {
+    "Description": "由于握持武器的方式发生了变化，现在使用它就像走路一样自然。",
+    "Explanation": "武器变体，显著提升人体工学设计，实现更佳操控性、更快的瞄准切换，并减少长时间使用时的疲劳感。",
+    "ShortName": "Handy",
+    "Properties": {
+      "Ergonomics": "+25"
+    },
+    "Changes": {
+      "Minimum": {
+        "Ergonomics": 40
+      }
+    },
+    "Weapons": [
+      "T-5000M",
+      "Mosin Sniper",
+      "SV-98",
+      "DVL-10",
+      "AXMC",
+      "Mk 17",
+      "M700",
+      "Mosin Infantry",
+      "VPO-215",
+      "PPSh-41",
+      "Vector .45ACP",
+      "AK-74",
+      "AKMSN",
+      "TRG M10",
+      "AK-50"
+    ],
+    "Rarity": "Superior"
+  },
+  "Karabin Spetsialniy (特种卡宾枪)": {
+    "Description": "KS-23“特种卡宾枪”是一款被俄罗斯军方正式归类为卡宾枪的霰弹枪，于是我们生产了更多这种武器。",
+    "Explanation": "一款采用23x75mmR口径的霰弹枪变体，配备特制12发弹匣，无需桥夹装填——带来真正的卡宾枪体验！",
+    "ShortName": "KS+23mm",
+    "Properties": {
+      "WeapFireType": [
+        "burst"
+      ],
+      "BurstShotsCount": 1,
+      "BFirerate": 420
+    },
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "KS-23M"
+        ]
+      },
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "KS-23M 23x75 12-shell magazine cap"
+          ]
+        }
+      }
+    },
+    "IndividualChanges": {
+      "M3 Super 90": {
+        "Properties": {
+          "WeapFireType": [
+            "semiauto"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "M3 Super 90",
+      "590A1",
+      "M870",
+      "MP-133",
+      "MP-153",
+      "MP-155"
+    ],
+    "Rarity": "Superior"
+  },
+  "Assault Rifle (突击步枪)": {
+    "Description": "\"我要退款！这把武器对我来说太大了！但——但我喜欢这个口径。你能给我弄个小点的、能放进我手提包里的吗？\"",
+    "Explanation": "5.56x45mm NATO口径手枪，兼容所有M4A1弹匣",
+    "ShortName": "AR",
+    "Properties": {
+      "WeapFireType": [
+        "single",
+        "burst",
+        "fullauto"
+      ],
+      "BurstShotsCount": 3,
+      "BFirerate": 750,
+      "HeatFactorByShot": "-40%",
+      "ItemSound": "weap_ar"
+    },
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "M4A1"
+        ]
+      },
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "M4A1"
+          ]
+        }
+      }
+    },
+    "IndividualChanges": {
+      "Blicky": {
+        "Properties": {
+          "WeapFireType": [
+            "single",
+            "fullauto"
+          ]
+        },
+        "Slots": {
+          "mod_magazine": {
+            "Filter": [
+              "Blicky Special Magical Unbelievable Magazine"
+            ]
+          }
+        }
+      }
+    },
+    "Weapons": [
+      "PM (t)",
+      "APB",
+      "MP-443 Grach",
+      "P226R",
+      "TT Gold",
+      "M9A3",
+      "PL-15",
+      "M45A1",
+      "M1911A1",
+      "Desert Eagle L5 .50 AE",
+      "Blicky"
+    ],
+    "Rarity": "Superior"
+  },
+  "Endless (无尽)": {
+    "Description": "你真的需要在一场突袭中用那么多发子弹吗？大概不需要。\n但这把武器设计得与众不同……所以就这样了。",
+    "Explanation": "弹匣沉重且笨重的武器变体，但容量惊人地大。",
+    "ShortName": "Endless",
+    "Properties": {
+      "HeatFactorByShot": "-33%",
+      "BaseMalfunctionChance": "-33%"
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "BasedOn": {
+            "Property": "WeapClass",
+            "Cases": {
+              "assaultRifle": {
+                "Filter": [
+                  "M60 500-round \"Endless\" ammo box"
+                ]
+              },
+              "smg": {
+                "Filter": [
+                  "M60 800-round \"Endless\" ammo box"
+                ]
+              },
+              "marksmanRifle": {
+                "Filter": [
+                  "M60 500-round \"Endless\" ammo box"
+                ]
+              },
+              "assaultCarbine": {
+                "Filter": [
+                  "M60 500-round \"Endless\" ammo box"
+                ]
+              },
+              "shotgun": {
+                "Filter": [
+                  "M60 100-round \"Endless\" ammo box"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "Weapons": [
+      "SA-58",
+      "RFB",
+      "RSASS",
+      "AKM",
+      "RD-704",
+      "OP-SKS",
+      "AUG A3",
+      "M4A1",
+      "TX-15 DML",
+      "P90",
+      "STM-9",
+      "Vector 9x19",
+      "MPX",
+      "Vector .45ACP",
+      "UMP 45",
+      "MP7A2",
+      "M3 Super 90",
+      "590A1",
+      "M870",
+      "MP-133",
+      "MP-153",
+      "MP-155",
+      "KS-23M"
+    ],
+    "Rarity": "Superior"
+  },
+  "Anti-materiel revolver (反器材转轮手枪)": {
+    "Description": "运用量子物理——或许还带点黑魔法——这把左轮手枪发射的弹药通常用于对抗轻型装甲车辆。",
+    "Explanation": "一款左轮手枪变体，采用12.7x108毫米口径，水平后坐力增强。使用标准12.7x108毫米口径弹药，可在斯基尔LL1处获取。",
+    "ShortName": "AMR",
+    "Properties": {
+      "RecoilForceBack": "+300%",
+      "AmmoCaliber": "Caliber127x108",
+      "DefAmmo": "5cde8864d7f00c0010373be1"
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "Anti-materiel revolver 12.7x108 5-round cylinder"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "RSh-12",
+      "CR 50DS",
+      "CR 200DS",
+      "MTs-255-12"
+    ],
+    "Rarity": "Superior"
+  },
+  "Black Market (黑市)": {
+    "Description": "“这是一把黑市认证的武器，因为它能发射致盲弹。”  \n——某个黑帮老大，大概吧",
+    "Explanation": ".300 BLK与5.56×45mm NATO双口径武器变体，具备降低后坐力与优化人机工效的特性",
+    "ShortName": "B.Market",
+    "Properties": {
+      "RecoilForceUp": "-12%",
+      "RecoilForceBack": "-7%",
+      "RecoilReturnSpeedHandRotation": "+6%",
+      "RecoilCamera": "-6%",
+      "RecoilDampingHandRotation": "-6%",
+      "RecoilReturnPathDampingHandRotation": "-6%",
+      "Ergonomics": "+10",
+      "HeatFactorByShot": "-15%"
+    },
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "MCX .300 BLK",
+          "M4A1"
+        ]
+      }
+    },
+    "Weapons": [
+      "HK 416A5",
+      "AUG A1",
+      "Mk 16",
+      "AUG A3",
+      "MDR 5.56x45",
+      "M4A1",
+      "G36",
+      "ADAR 2-15",
+      "TX-15 DML",
+      "MCX .300 BLK",
+      "Velociraptor .300 BLK",
+      "AK-101",
+      "AK-102"
+    ],
+    "Rarity": "Superior"
+  },
+  "Off-Meta (非主流)": {
+    "Description": "一位充满热情的模组制作者的梦想：以心血、时间和专业工具精心打造——献给那些已被社区遗忘已久的武器。",
+    "Explanation": "武器变体，后坐力降低且人机工程学提升。部分型号现支持更广泛的弹匣类型，另一些则配备无枪机模式。",
+    "ShortName": "Off-Meta",
+    "Properties": {
+      "RecoilForceBack": "-20%",
+      "RecoilForceUp": "-20%",
+      "RecoilCamera": "-20%",
+      "AimPlane": "-20%",
+      "RecolDispersion": "-20%",
+      "RecoilReturnPathDampingHandRotation": "-20%",
+      "RecoilDampingHandRotation": "-20%",
+      "RecoilReturnSpeedHandRotation": "+20%",
+      "Ergonomics": "+15"
+    },
+    "Changes": {
+      "Minimum": {
+        "BFirerate": 240
+      }
+    },
+    "IndividualChanges": {
+      "VPO-215": {
+        "Properties": {
+          "WeapFireType": [
+            "burst"
+          ],
+          "BurstShotsCount": 1
+        },
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "VPO-215",
+              "AKM"
+            ]
+          }
+        }
+      },
+      "TOZ-106": {
+        "Properties": {
+          "WeapFireType": [
+            "burst"
+          ],
+          "BurstShotsCount": 1,
+          "ShotgunDispersion": "-75%"
+        }
+      },
+      "Mosin Infantry": {
+        "Properties": {
+          "WeapFireType": [
+            "burst"
+          ],
+          "BurstShotsCount": 1
+        },
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "Mosin Infantry",
+              "SVDS",
+              "AVT-40"
+            ],
+            "Add": [
+              "5bae13ded4351e44f824bf38"
+            ]
+          }
+        }
+      },
+      "Mosin Sniper": {
+        "Properties": {
+          "WeapFireType": [
+            "burst"
+          ],
+          "BurstShotsCount": 1
+        },
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "Mosin Infantry",
+              "SVDS",
+              "AVT-40"
+            ],
+            "Add": [
+              "5bae13ded4351e44f824bf38"
+            ]
+          }
+        }
+      },
+      "CR 200DS": {
+        "Properties": {
+          "WeapFireType": [
+            "burst"
+          ],
+          "BurstShotsCount": 1
+        }
+      },
+      "VPO-101 Vepr-Hunter": {
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "VPO-101 Vepr-Hunter",
+              "SA-58"
+            ]
+          }
+        }
+      },
+      "PP-91-01 Kedr-B": {
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "PP-91-01 Kedr-B",
+              "PM"
+            ]
+          }
+        }
+      },
+      "PP-91 Kedr": {
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "PP-91 Kedr",
+              "PM"
+            ]
+          }
+        }
+      },
+      "PP-9 Klin": {
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "PP-9 Klin",
+              "PM"
+            ]
+          }
+        }
+      },
+      "OP-SKS": {
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "OP-SKS",
+              "AKM"
+            ]
+          }
+        }
+      },
+      "SKS": {
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "SKS",
+              "AKM"
+            ]
+          }
+        }
+      },
+      "UZI": {
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "UZI",
+              "UZI PRO Pistol",
+              "UZI PRO SMG"
+            ]
+          }
+        }
+      },
+      "UZI PRO Pistol": {
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "UZI",
+              "UZI PRO Pistol",
+              "UZI PRO SMG"
+            ]
+          }
+        }
+      },
+      "UZI PRO SMG": {
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "UZI",
+              "UZI PRO Pistol",
+              "UZI PRO SMG"
+            ]
+          }
+        }
+      },
+      "RFB": {
+        "Slots": {
+          "mod_magazine": {
+            "FromWeapons": [
+              "RFB",
+              "M1A"
+            ]
+          }
+        }
+      }
+    },
+    "Weapons": [
+      "RFB",
+      "OP-SKS",
+      "SKS",
+      "SR-3M",
+      "VPO-101 Vepr-Hunter",
+      "VPO-209",
+      "VPO-215",
+      "ASh-12",
+      "Velociraptor .300 BLK",
+      "TOZ-106",
+      "Mosin Infantry",
+      "Mosin Sniper",
+      "PP-91-01 Kedr-B",
+      "PP-91 Kedr",
+      "PP-9 Klin",
+      "UZI",
+      "UZI PRO Pistol",
+      "UZI PRO SMG",
+      "CR 200DS"
+    ],
+    "Rarity": "Superior"
+  }
+}

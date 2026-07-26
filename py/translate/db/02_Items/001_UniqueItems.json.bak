@@ -1,0 +1,47 @@
+{
+  "PK .50 BMG 100-round box (PK .50 BMG 100发弹箱)": {
+    "Description": "一款独特的100发.50 BMG弹药箱，专为卡拉什尼科夫机枪特殊型号设计。由>已编辑<制造。",
+    "ShortName": "PK .50",
+    "ItemTplToClone": "646372518610c40fc20204e8",
+    "Changes": {
+      "Cartridges": {
+        "Count": 100,
+        "FromWeapons": [
+          "AK-50"
+        ]
+      }
+    },
+    "HandbookPriceRoubles": 66777,
+    "VariantType": "PKM >Heavy P2W Gun< Unique",
+    "Rarity": "Unique"
+  },
+  "Nightforce ATACR 7-35x56 34mm riflescope for Stormtrooper Use Only (夜视ATACR 7-35x56 34毫米风暴兵专用步枪瞄准镜)": {
+    "Description": "NightForce ATACR 7-35x56 多功能瞄准镜，具备宽广的放大倍率范围，并在整个倍率区间内提供宽阔的视野，使您能够轻松发现并瞄准哪怕是最微小的目标。",
+    "ShortName": "Storm Scope",
+    "ItemTplToClone": "5aa66be6e5b5b0214e506e97",
+    "Properties": {
+      "Ergonomics": 100,
+      "Weight": -20
+    },
+    "HandbookPriceRoubles": 150666,
+    "VariantType": "APB >Stormtrooper< Unique",
+    "Rarity": "Unique"
+  },
+  "Nightforce Magmount 34mm ring scope mount for Stormtrooper Use Only (夜视力量34毫米环形镜架暴风兵专用镜架)": {
+    "Description": "Nightforce X-Treme Duty Ultralite 一体式超轻镜架是一款专为皮卡汀尼导轨安装设计的34毫米瞄准镜底座支架。“仅供风暴兵使用的Nightforce ATACR 7-35x56 34毫米步枪瞄准镜”仅可安装于此镜架上。",
+    "ShortName": "Storm Mount",
+    "ItemTplToClone": "5aa66a9be5b5b0214e506e89",
+    "Changes": {
+      "Slots": {
+        "mod_scope": {
+          "Filter": [
+            "Nightforce ATACR 7-35x56 34mm riflescope for Stormtrooper Use Only"
+          ]
+        }
+      }
+    },
+    "HandbookPriceRoubles": 7777,
+    "VariantType": "APB >Stormtrooper< Unique",
+    "Rarity": "Unique"
+  }
+}

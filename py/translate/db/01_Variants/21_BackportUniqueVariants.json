@@ -1,0 +1,92 @@
+{
+  "MXLR Unique": {
+    "Description": "即使你不是铁瞄射击的高手，弹匣里也装满了子弹！",
+    "Explanation": "MXLR >无尽速瞄<  \n这款独特变体融合了无尽型与速瞄型的最佳特性。尽管缺少用于安装瞄准镜的导轨槽，但它拥有极致的人体工学性能、极佳的初速、降低的热量系数与故障概率，当然，还有超大弹匣！",
+    "ShortName": ">Endless Quick-scope<",
+    "Properties": {
+      "HeatFactorByShot": "-33%",
+      "BaseMalfunctionChance": "-33%",
+      "Velocity": 250
+    },
+    "Changes": {
+      "Minimum": {
+        "Ergonomics": 200
+      },
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "MXLR .308 ME 100-round endless magazine"
+          ]
+        },
+        "mod_mount": {
+          "Filter": []
+        }
+      }
+    },
+    "Weapons": [
+      "MXLR"
+    ],
+    "Rarity": "Unique"
+  },
+  "AS VAL Unique": {
+    "Weapons": [
+      "AS VAL MOD.4"
+    ]
+  },
+  "AK-308 Unique": {
+    "Description": "它甚至没那么重！",
+    "Explanation": "AK-308 >元重型机枪<\n这款独特变体融合了元变体与重型机枪变体的最佳特性。仅限全自动射击模式，拥有元变体属性，射速提升且垂直后坐力降低，但可见后坐力增加。",
+    "ShortName": ">Meta HMG<",
+    "Properties": {
+      "WeapFireType": [
+        "fullauto"
+      ],
+      "RecoilForceUp": "-80%",
+      "RecoilForceBack": "+100%",
+      "RecoilReturnSpeedHandRotation": "+10%",
+      "RecoilCamera": "-10%",
+      "RecoilDampingHandRotation": "-10%",
+      "RecoilReturnPathDampingHandRotation": "-10%",
+      "Ergonomics": "+25",
+      "RecoilStableIndexShot": 4,
+      "HeatFactorByShot": "-25%",
+      "BFirerate": "+20%"
+    },
+    "Weapons": [
+      "AK-308"
+    ],
+    "Rarity": "Unique"
+  },
+  "NL545 GP Unique": {
+    "Description": "当Meta枪获得没有负面效果的Meme变体时，它就会变成……这样：",
+    "Explanation": "NL545 GP >大口径激光步枪<  \n这款特殊变体比基础型号口径更大，并继承了激光步枪变体类型的属性。仅支持三发点射模式，拥有极高的射速、初速且无后坐力，使用7.62×39毫米弹药，适配AKM弹匣。",
+    "ShortName": ">Larger Laser Rifle<",
+    "Properties": {
+      "WeapFireType": [
+        "burst"
+      ],
+      "BFirerate": 5450,
+      "BurstShotsCount": 3,
+      "RecoilStableIndexShot": 1,
+      "Velocity": "+100"
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "AKM"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "AKM"
+        ]
+      }
+    },
+    "Weapons": [
+      "NL545 GP"
+    ],
+    "Rarity": "Unique"
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "12.7x108 Anti-materiel rifle Variant 2-round magazine (12.7x108反器材步枪变体2发弹匣)": {
+    "Description": "专为特殊反器材步枪需求设计的双轮弹匣。内含小型黑洞，并带有黑魔法的气息。",
+    "ShortName": "AMR mag",
+    "ItemTplToClone": "5ae0973a5acfc4001562206c",
+    "Changes": {
+      "Cartridges": {
+        "Count": 2,
+        "FromWeapons": [
+          "NSV Utyos"
+        ]
+      }
+    },
+    "HandbookPriceRoubles": 3000,
+    "VariantType": "Anti-materiel rifle",
+    "Rarity": "Ultimate"
+  },
+  "Pay to Win Variant 5-round magazine (付费获胜变体5发弹匣)": {
+    "Description": "适用于“付费致胜”变体武器的标准5发弹匣。算不上多“付费致胜”，但依旧价格不菲！",
+    "ShortName": "P2W 5r",
+    "ItemTplToClone": "5d25a4a98abbc30b917421a4",
+    "Properties": {
+      "ExtraSizeDown": 1,
+      "Height": 2
+    },
+    "Changes": {
+      "Cartridges": {
+        "Count": 5,
+        "FromWeapons": [
+          "AK-50"
+        ]
+      }
+    },
+    "Barter": {
+      "TraderId": "PEACEKEEPER",
+      "LoyalLevel": 1,
+      "UnlimitedCount": true,
+      "StackObjectsCount": 99,
+      "BarterPrice": {
+        "MONEY_ROUBLES": 50000
+      }
+    },
+    "HandbookPriceRoubles": 20000,
+    "VariantType": "Pay to Win",
+    "Rarity": "Ultimate"
+  },
+  "Pay to Win Variant 20-round magazine (付费获胜变体20发弹匣)": {
+    "Description": "一款专为“付费必胜”变体武器设计的20发特殊弹匣。非常“付费必胜”，看看它的价格吧！",
+    "ShortName": "P2W 20r",
+    "ItemTplToClone": "5d25af8f8abbc3055079fec5",
+    "Properties": {
+      "ExtraSizeDown": 1,
+      "Height": 2
+    },
+    "Changes": {
+      "Cartridges": {
+        "Count": 20,
+        "FromWeapons": [
+          "AK-50"
+        ]
+      }
+    },
+    "Barter": {
+      "TraderId": "PEACEKEEPER",
+      "LoyalLevel": 2,
+      "UnlimitedCount": true,
+      "StackObjectsCount": 99,
+      "BarterPrice": {
+        "MONEY_ROUBLES": 250000
+      }
+    },
+    "HandbookPriceRoubles": 100000,
+    "VariantType": "Pay to Win",
+    "Rarity": "Ultimate"
+  },
+  "Pay to Win Variant 30-round magazine (付费获胜变体30发弹匣)": {
+    "Description": "付费必胜变体武器的特殊30发弹匣。价格高得离谱！",
+    "ShortName": "P2W 30r",
+    "ItemTplToClone": "5d25a6a48abbc306c62e6310",
+    "Properties": {},
+    "Changes": {
+      "Cartridges": {
+        "Count": 30,
+        "FromWeapons": [
+          "AK-50"
+        ]
+      }
+    },
+    "Barter": {
+      "TraderId": "PEACEKEEPER",
+      "LoyalLevel": 3,
+      "UnlimitedCount": true,
+      "StackObjectsCount": 99,
+      "BarterPrice": {
+        "MONEY_ROUBLES": 300000,
+        "Ultimate Quality Variant Core": 1
+      }
+    },
+    "HandbookPriceRoubles": 200000,
+    "VariantType": "Pay to Win",
+    "Rarity": "Ultimate"
+  },
+  "Pay to Win Variant 50-round magazine (付费获胜变体50发弹匣)": {
+    "Description": "专为Pay to Win变体武器设计的特殊50发弹匣。仅限氪金大佬使用！",
+    "ShortName": "P2W 50r",
+    "ItemTplToClone": "5cf12a15d7f00c05464b293f",
+    "Properties": {
+      "ExtraSizeDown": 2
+    },
+    "Changes": {
+      "Cartridges": {
+        "Count": 50,
+        "FromWeapons": [
+          "AK-50"
+        ]
+      }
+    },
+    "Barter": {
+      "TraderId": "PEACEKEEPER",
+      "LoyalLevel": 4,
+      "UnlimitedCount": true,
+      "StackObjectsCount": 99,
+      "BarterPrice": {
+        "MONEY_ROUBLES": 700000,
+        "Ultimate Quality Variant Core": 2
+      }
+    },
+    "HandbookPriceRoubles": 500000,
+    "VariantType": "Pay to Win",
+    "Rarity": "Ultimate"
+  },
+  "The Unheard Edition Variant 5-round magazine (《无声版》变体5发弹匣)": {
+    "Description": "《无名版》变体武器的标准5发弹匣。算不上多强的氪金优势，但价格依然不菲！",
+    "ShortName": "TUE 5r",
+    "ItemTplToClone": "64b9e2037fdfb81df81e3c25",
+    "Properties": {
+      "ExtraSizeDown": 1,
+      "Height": 2
+    },
+    "Changes": {
+      "Cartridges": {
+        "Count": 5,
+        "FromWeapons": [
+          "NSV Utyos"
+        ]
+      }
+    },
+    "Barter": {
+      "TraderId": "PEACEKEEPER",
+      "LoyalLevel": 1,
+      "UnlimitedCount": true,
+      "StackObjectsCount": 99,
+      "BarterPrice": {
+        "MONEY_ROUBLES": 40000
+      }
+    },
+    "HandbookPriceRoubles": 20000,
+    "VariantType": "The Unheard Edition",
+    "Rarity": "Ultimate"
+  },
+  "The Unheard Edition Variant 10-round magazine (未闻版变体10发弹匣)": {
+    "Description": "《无声版》变体武器专用的10发弹匣。非常氪金，看看它的价格吧！",
+    "ShortName": "TUE 10r",
+    "ItemTplToClone": "5aaf8a0be5b5b00015693243",
+    "Properties": {
+      "ExtraSizeDown": 1,
+      "Height": 2
+    },
+    "Changes": {
+      "Cartridges": {
+        "Count": 10,
+        "FromWeapons": [
+          "NSV Utyos"
+        ]
+      }
+    },
+    "Barter": {
+      "TraderId": "PEACEKEEPER",
+      "LoyalLevel": 2,
+      "UnlimitedCount": true,
+      "StackObjectsCount": 99,
+      "BarterPrice": {
+        "MONEY_ROUBLES": 200000
+      }
+    },
+    "HandbookPriceRoubles": 100000,
+    "VariantType": "The Unheard Edition",
+    "Rarity": "Ultimate"
+  },
+  "The Unheard Edition Variant 20-round magazine (无声版变体20发弹匣)": {
+    "Description": "《 unheard 版变体武器专用20发弹匣。贵得离谱！》",
+    "ShortName": "TUE 20r",
+    "ItemTplToClone": "5addcce35acfc4001a5fc635",
+    "Properties": {
+      "ExtraSizeDown": 1,
+      "Height": 2
+    },
+    "Changes": {
+      "Cartridges": {
+        "Count": 20,
+        "FromWeapons": [
+          "NSV Utyos"
+        ]
+      }
+    },
+    "Barter": {
+      "TraderId": "PEACEKEEPER",
+      "LoyalLevel": 3,
+      "UnlimitedCount": true,
+      "StackObjectsCount": 99,
+      "BarterPrice": {
+        "MONEY_ROUBLES": 300000,
+        "Ultimate Quality Variant Core": 1
+      }
+    },
+    "HandbookPriceRoubles": 200000,
+    "VariantType": "The Unheard Edition",
+    "Rarity": "Ultimate"
+  },
+  "The Unheard Edition Variant 30-round magazine (未被听见版异色30发弹匣)": {
+    "Description": "《无声版》变体武器的专用30发弹匣。仅限氪金大佬！",
+    "ShortName": "TUE 30r",
+    "ItemTplToClone": "5addccf45acfc400185c2989",
+    "Properties": {
+      "ExtraSizeDown": 2,
+      "Height": 2
+    },
+    "Changes": {
+      "Cartridges": {
+        "Count": 30,
+        "FromWeapons": [
+          "NSV Utyos"
+        ]
+      }
+    },
+    "Barter": {
+      "TraderId": "PEACEKEEPER",
+      "LoyalLevel": 4,
+      "UnlimitedCount": true,
+      "StackObjectsCount": 99,
+      "BarterPrice": {
+        "MONEY_ROUBLES": 700000,
+        "Ultimate Quality Variant Core": 2
+      }
+    },
+    "HandbookPriceRoubles": 500000,
+    "VariantType": "The Unheard Edition",
+    "Rarity": "Ultimate"
+  },
+  "M82A1 .50 BMG 5-round internal magazine (M82A1 .50 BMG 5发内置弹匣)": {
+    "Description": "M82A1狙击步枪使用的5发.50 BMG弹匣，由巴雷特枪械公司制造。仅可插入.50口径变体类武器使用。",
+    "ShortName": "50Cal mag",
+    "ItemTplToClone": "67d418d0ffb910d21f04720e",
+    "Changes": {
+      "ReloadMagType": "InternalMagazine",
+      "Cartridges": {
+        "Count": 5,
+        "FromWeapons": [
+          "AK-50"
+        ]
+      }
+    },
+    "HandbookPriceRoubles": 18888,
+    "VariantType": "50Cal",
+    "Rarity": "Ultimate"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "MXLR .308 ME 100-round endless magazine (MXLR .308 ME 100发无限弹匣)": {
+    "Description": "一款独特的100发.308 ME管状弹匣，专为马林MXLR步枪独特变体设计。",
+    "ShortName": "MXLR 100",
+    "ItemTplToClone": "67c5424826265106dd0697a4",
+    "Properties": {
+      "Height": 5,
+      "Width": 5
+    },
+    "Changes": {
+      "Cartridges": {
+        "Count": 100,
+        "FromWeapons": [
+          "MXLR"
+        ]
+      }
+    },
+    "HandbookPriceRoubles": 9999,
+    "VariantType": "MXLR >Endless Quick-scope<",
+    "Rarity": "Unique"
+  }
+}

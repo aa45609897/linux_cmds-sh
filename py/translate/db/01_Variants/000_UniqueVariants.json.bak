@@ -1,0 +1,368 @@
+{
+  "AK-101 Unique (AK-101独特)": {
+    "Description": "基于AK平台的PPSh现代化改造，使一种原本过时的战场口径弹药焕发出惊人的作战效能。",
+    "Explanation": "AK-101 >冲锋枪与二战<  \n这款独特变体复刻了波波沙冲锋枪的数据与口径，但后坐力为零。",
+    "ShortName": ">SMG & WWII<",
+    "Properties": {
+      "DurabilityBurnRatio": 1.15,
+      "BFirerate": 1250,
+      "RecoilForceUp": 89,
+      "RecoilForceBack": 294,
+      "RecoilCamera": 0.05,
+      "RecoilReturnPathDampingHandRotation": 0.45,
+      "RecoilReturnPathOffsetHandRotation": 0.012,
+      "RecoilReturnSpeedHandRotation": 2,
+      "RecoilStableAngleIncreaseStep": 2.9,
+      "AllowJam": false,
+      "AllowFeed": false,
+      "AllowMisfire": false,
+      "AllowSlide": false,
+      "RecoilStableIndexShot": 1
+    },
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "TT"
+        ]
+      },
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "PPSh-41"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "AK-101"
+    ],
+    "Rarity": "Unique"
+  },
+  "M4A1 Unique (M4A1独特)": {
+    "Description": "美国工程学的奇迹。有人想要一把BiS M4，现在它来了。",
+    "Explanation": "M4A1 >7.62x51 版本<  \n这一独特变体拥有顶级属性，采用X-17弹匣装填7.62x51毫米弹药。",
+    "ShortName": ">7.62x51 Meta<",
+    "Properties": {
+      "RecoilForceUp": "-30%",
+      "RecoilForceBack": "-15%",
+      "RecoilReturnSpeedHandRotation": "+15%",
+      "RecoilCamera": "-15%",
+      "RecoilDampingHandRotation": "-15%",
+      "RecoilReturnPathDampingHandRotation": "-15%",
+      "Ergonomics": "+15"
+    },
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "X-17"
+        ]
+      },
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "X-17"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "M4A1"
+    ],
+    "Rarity": "Unique"
+  },
+  "Vector 9x19 Unique (Vector 9x19 独特型)": {
+    "Description": "一把拥有M4口径、射速高于M4且使用M4弹匣的武器叫什么？5.56口径的Vector。",
+    "Explanation": "Vector 9x19 >5.56x45 速射型<\n此独特变体提升了射速，并改用M4A1弹匣装填5.56x45毫米弹药。",
+    "ShortName": ">5.56x45 Speedy<",
+    "Properties": {
+      "BFirerate": "+69%"
+    },
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "M4A1"
+        ]
+      },
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "M4A1"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "Vector 9x19"
+    ],
+    "Rarity": "Unique"
+  },
+  "SVT-40 Unique (SVT-40独特版)": {
+    "Description": "成人玩具枪。请勿吞食弹匣！",
+    "Explanation": "SVT-40 >Blicky<  \n这款独特变体可使用Blicky特殊魔法不可思议弹匣，兼容所有匹配口径。",
+    "ShortName": ">Blicky<",
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "NSV Utyos",
+          "SVDS",
+          "FN40GL",
+          "TT",
+          "M4A1",
+          "Saiga-12K",
+          "SR-2M"
+        ]
+      },
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "Blicky Special Magical Unbelievable Magazine"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "SVT-40"
+    ],
+    "Rarity": "Unique"
+  },
+  "MP-155 Unique (MP-155独特版)": {
+    "Description": "反器材霰弹枪——因为步枪是给酷小孩玩的，而霰弹枪才是真男人的选择！",
+    "Explanation": "MP-155 >狙击型AMR<  \n这款独特变体使用定制弹匣和AXMC枪管发射12.7×108毫米弹药，以提升射击精度。",
+    "ShortName": ">Sniper AMR<",
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "NSV Utyos"
+        ]
+      },
+      "Slots": {
+        "mod_barrel": {
+          "Filter": [
+            "Sniper Variant 28 inch barrel"
+          ]
+        },
+        "mod_magazine": {
+          "Filter": [
+            "MP-155 12.7x108mm 6-shell magazine"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "MP-155"
+    ],
+    "Rarity": "Unique"
+  },
+  "AK-545 Unique (AK-545独特款)": {
+    "Description": "我们希望这一变体最终能满足所有在自动射击与精准射击之间难以抉择的人。",
+    "Explanation": "AK-545 >自动射手型<  \n这一独特变体融合了自动型与射手型的最佳特性。支持所有射击模式，射速提升，后坐力降低，具备两发点射功能，且不会发生故障。",
+    "ShortName": ">Automatic Marksman<",
+    "Properties": {
+      "WeapFireType": [
+        "fullauto",
+        "single",
+        "burst"
+      ],
+      "BFirerate": "+10%",
+      "RecoilForceBack": "-30%",
+      "RecoilForceUp": "-20%",
+      "RecoilDampingHandRotation": "-30%",
+      "RecoilReturnSpeedHandRotation": "-30%",
+      "BurstShotsCount": 2,
+      "AllowJam": false,
+      "AllowFeed": false,
+      "AllowMisfire": false,
+      "AllowSlide": false
+    },
+    "Weapons": [
+      "AK-545"
+    ],
+    "Rarity": "Unique"
+  },
+  "M870 Unique (M870独特)": {
+    "Description": "M870，但火力足以礼貌地请整支小队消失。",
+    "Explanation": "M870 >特种卡宾枪与鹿弹发射器<  \n该型号结合了每击全弹匣发射、极低后坐力、23x75毫米弹药以及特殊的12发弹匣",
+    "ShortName": ">KS-23 & B.Launcher<",
+    "Properties": {
+      "WeapFireType": [
+        "burst"
+      ],
+      "BurstShotsCount": 100,
+      "RecoilForceBack": "-90%",
+      "RecoilForceUp": "-90%",
+      "RecoilCamera": "-90%"
+    },
+    "Changes": {
+      "Minimum": {
+        "BFirerate": 7200
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "KS-23M"
+        ]
+      },
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "KS-23M 23x75 12-shell magazine cap"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "M870"
+    ],
+    "Rarity": "Unique"
+  },
+  "PPSh-41 Unique (PPSh-41独特版)": {
+    "Description": "为那些认为“高容量”意味着“数千发”的人准备的PPSh冲锋枪",
+    "Explanation": "PPSh-41 >真正无限<  \n该变体配备了一个可容纳近5000发子弹的特殊弹匣，且射击时无任何热量积聚。",
+    "ShortName": ">Actually Endless<",
+    "Properties": {
+      "DurabilityBurnRatio": 0
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "PPSh-41 Unique 7.62x25 4999-round drum magazine"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "PPSh-41"
+    ],
+    "Rarity": "Unique"
+  },
+  "AK-50 Unique (AK-50独特)": {
+    "Description": "我们将您的AK-50免费升级为AK-74，且大幅减少了工程延误。",
+    "Explanation": "AK-50 > 真正的 AK <  \n这款独特变体的大部分数据源自AK-74",
+    "ShortName": ">Real AK<",
+    "Properties": {
+      "AimPlane": 0.19,
+      "AimSensitivity": 0.65,
+      "AllowFeed": true,
+      "AllowJam": true,
+      "AllowMisfire": true,
+      "AllowOverheat": true,
+      "AllowSlide": true,
+      "BaseMalfunctionChance": 0.1771,
+      "BurstShotsCount": 3,
+      "CameraSnap": 3.5,
+      "CameraToWeaponAngleStep": 0.1,
+      "CenterOfImpact": 0.058,
+      "CompactHandling": true,
+      "ConflictingItems": [],
+      "CoolFactorGun": 3.168,
+      "CoolFactorGunMods": 1.0008,
+      "DeviationCurve": 1.35,
+      "DeviationMax": 23,
+      "DiscardLimit": -1,
+      "DoubleActionAccuracyPenalty": 1.5,
+      "DropSoundType": "Rifle",
+      "Durability": 100,
+      "DurabilityBurnRatio": 1.15,
+      "Ergonomics": 30,
+      "ExamineExperience": 10,
+      "ExamineTime": 1,
+      "HeatFactorByShot": 1.49,
+      "HeatFactorGun": 0.9701,
+      "Height": 1,
+      "HipAccuracyRestorationDelay": 0.2,
+      "HipAccuracyRestorationSpeed": 7,
+      "HipInnaccuracyGain": 0.16,
+      "IronSightRange": 100,
+      "ItemSound": "weap_ar",
+      "LeftHandItem": false,
+      "LootExperience": 20,
+      "ManualBoltCatch": false,
+      "MaxDurability": 100,
+      "MaxRepairDegradation": 0.04,
+      "MaxRepairKitDegradation": 0.035,
+      "OperatingResource": 5200,
+      "RarityPvE": "Common",
+      "RecoilAngle": 90,
+      "RecoilCamera": 0.04,
+      "RecoilCategoryMultiplierHandRotation": 0.19,
+      "RecoilDampingHandRotation": 0.85,
+      "RecoilForceBack": 322,
+      "RecoilForceUp": 120,
+      "RecoilPosZMult": 1,
+      "RecoilReturnPathDampingHandRotation": 0.48,
+      "RecoilReturnPathOffsetHandRotation": 0.01,
+      "RecoilReturnSpeedHandRotation": 2.4,
+      "RecoilStableAngleIncreaseStep": 2.5,
+      "RecoilStableIndexShot": 5,
+      "RecolDispersion": 10,
+      "ReloadMode": "ExternalMagazine",
+      "RepairComplexity": 0,
+      "RepairCost": 109,
+      "RepairSpeed": 5,
+      "SightingRange": 100,
+      "SingleFireRate": 450,
+      "SizeReduceRight": 0,
+      "StackMaxSize": 1,
+      "StackObjectsCount": 1,
+      "TacticalReloadFixation": 0.95,
+      "Unlootable": false,
+      "UseAltMountBone": false,
+      "Velocity": 1.8,
+      "Weight": 1.992,
+      "Width": 4,
+      "BEffDist": 650,
+      "BFirerate": 650,
+      "BHearDist": 80,
+      "WeapFireType": [
+        "single",
+        "fullauto"
+      ]
+    },
+    "Weapons": [
+      "AK-50"
+    ],
+    "Rarity": "Unique"
+  },
+  "Mosin Sniper Unique (莫辛狙击枪独特版)": {
+    "Description": "'肩毁之枪'——如今以更加>闻所未闻<的版本呈现",
+    "Explanation": "莫辛纳甘狙击步枪 >无声版 & 反器材步枪 & 超音速 & 无栓<  \n这款独特型号采用12.7×108毫米口径，使用无声版弹匣，具有明显的可视后坐力，以精确射手步枪（DMR）模式运作，并拥有极高的枪口初速。",
+    "ShortName": ">Anti-Unheard Rifle<",
+    "Properties": {
+      "RecoilForceBack": "+300%",
+      "AllowJam": false,
+      "AllowFeed": false,
+      "AllowSlide": false,
+      "AllowMisfire": true,
+      "Velocity": 350,
+      "CenterOfImpact": 0.01,
+      "WeapFireType": [
+        "burst"
+      ],
+      "BurstShotsCount": 1
+    },
+    "Changes": {
+      "Minimum": {
+        "BFirerate": 450
+      },
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "The Unheard Edition Variant 5-round magazine",
+            "The Unheard Edition Variant 10-round magazine",
+            "The Unheard Edition Variant 20-round magazine",
+            "The Unheard Edition Variant 30-round magazine"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "NSV Utyos"
+        ]
+      }
+    },
+    "Weapons": [
+      "Mosin Sniper"
+    ],
+    "Rarity": "Unique"
+  }
+}

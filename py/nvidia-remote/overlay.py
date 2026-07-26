@@ -17,13 +17,30 @@ from PyQt6.QtGui import QIcon, QAction, QPixmap, QPainter, QColor, QPen
 
 # ------------------- Windows API 定义 -------------------
 user32 = ctypes.windll.user32
+
+# 规范化 64位 下的 API 函数签名，防止指针截断导致 API 调用失败
+user32.GetWindowLongW.argtypes = [wintypes.HWND, ctypes.c_int]
+user32.GetWindowLongW.restype = wintypes.LONG
+user32.SetWindowLongW.argtypes = [wintypes.HWND, ctypes.c_int, wintypes.LONG]
+user32.SetWindowLongW.restype = wintypes.LONG
+user32.SetWindowPos.argtypes = [wintypes.HWND, wintypes.HWND, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_uint]
+user32.SetWindowPos.restype = wintypes.BOOL
+user32.GetAsyncKeyState.argtypes = [ctypes.c_int]
+user32.GetAsyncKeyState.restype = ctypes.c_short
+
 GWL_EXSTYLE = -20
 WS_EX_LAYERED = 0x00080000
 WS_EX_TRANSPARENT = 0x00000020
 SWP_FRAMECHANGED = 0x0020
 SWP_NOMOVE = 0x0002
 SWP_NOSIZE = 0x0001
-SWP_NOZORDER = 0x0004
+
+# 必须定义为 ctypes 的 HWND 类型
+HWND_TOPMOST = wintypes.HWND(-1)
+HWND_NOTOPMOST = wintypes.HWND(-2)
+SWP_SHOWWINDOW = 0x0040
+SWP_NOACTIVATE = 0x0010
+WS_EX_NOACTIVATE = 0x08000000
 
 # ------------------- 配置文件管理 -------------------
 def get_config_path():
@@ -46,11 +63,10 @@ DEFAULT_CONFIG = {
         "temp_danger": 80,
         "temp_warning": 60
     },
-    # UI 设置 (新增)
     "ui_settings": {
-        "font_color": "#00FF00",  # 默认亮绿色
-        "bg_color": "#000000",    # 默认黑色
-        "bg_opacity": 200         # 0-255, 200约为78%不透明度
+        "font_color": "#00FF00",
+        "bg_color": "#000000",
+        "bg_opacity": 200
     }
 }
 
@@ -142,26 +158,23 @@ class SettingsDialog(QDialog):
         grp_color.addRow("温度 危险(红):", self.spin_temp_danger)
         layout.addLayout(grp_color)
 
-        # 4. 外观设置 (新增)
+        # 4. 外观设置
         layout.addSpacing(10)
         grp_ui = QFormLayout()
         ui_settings = current_config.get('ui_settings', DEFAULT_CONFIG['ui_settings'])
         
-        # 字体颜色
         self.font_color = ui_settings.get('font_color', '#00FF00')
         self.btn_font_color = QPushButton("选择颜色")
         self.btn_font_color.setStyleSheet(f"background-color: {self.font_color}; color: white;")
         self.btn_font_color.clicked.connect(self.pick_font_color)
         grp_ui.addRow("字体颜色:", self.btn_font_color)
         
-        # 背景颜色
         self.bg_color = ui_settings.get('bg_color', '#000000')
         self.btn_bg_color = QPushButton("选择颜色")
         self.btn_bg_color.setStyleSheet(f"background-color: {self.bg_color}; color: white;")
         self.btn_bg_color.clicked.connect(self.pick_bg_color)
         grp_ui.addRow("背景颜色:", self.btn_bg_color)
         
-        # 背景透明度
         self.slide_opacity = QSlider(Qt.Orientation.Horizontal)
         self.slide_opacity.setRange(0, 255)
         self.slide_opacity.setValue(int(ui_settings.get('bg_opacity', 200)))
@@ -172,10 +185,8 @@ class SettingsDialog(QDialog):
         hbox_op.addWidget(self.slide_opacity)
         hbox_op.addWidget(self.lbl_opacity_val)
         grp_ui.addRow("背景透明度:", hbox_op)
-        
         layout.addLayout(grp_ui)
 
-        # 按钮
         btn_box = QHBoxLayout()
         btn_save = QPushButton("保存设置")
         btn_cancel = QPushButton("取消")
@@ -256,13 +267,13 @@ class SSHWorker(QObject):
             if self.client:
                 try:
                     cmd = "nvidia-smi --query-gpu=name,utilization.gpu,memory.used,memory.total,temperature.gpu --format=csv,noheader"
-                    stdin, stdout, stderr = self.client.exec_command(cmd)
+                    # 必须加 timeout，否则网络假死会永久卡住 UI 更新
+                    stdin, stdout, stderr = self.client.exec_command(cmd, timeout=5)
                     out = stdout.read().decode().strip()
                     lines = out.split("\n")
                     text_lines = []
                     rules = self.config.get('color_rules', {})
                     
-                    # 获取 UI 设置中的字体颜色
                     ui = self.config.get('ui_settings', {})
                     default_font_color = ui.get('font_color', '#00FF00')
                     
@@ -277,7 +288,7 @@ class SSHWorker(QObject):
                             mem_percent = mem_used_val / mem_total_val * 100 if mem_total_val else 0
                             temp_val = int(temp)
 
-                            color = default_font_color # 默认使用设置的颜色
+                            color = default_font_color
                             if util_val > rules.get('danger', 80) or mem_percent > rules.get('danger', 80) or temp_val > rules.get('temp_danger', 80): color = "red"
                             elif util_val > rules.get('warning', 50) or mem_percent > rules.get('warning', 50) or temp_val > rules.get('temp_warning', 60): color = "orange"
 
@@ -304,7 +315,6 @@ class Overlay(QWidget):
         super().__init__()
         self.config = load_config()
         
-        # 窗口属性
         self.setWindowFlags(
             Qt.WindowType.FramelessWindowHint |
             Qt.WindowType.WindowStaysOnTopHint |
@@ -312,30 +322,27 @@ class Overlay(QWidget):
         )
         self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
 
-        # UI 样式应用
         self.apply_ui_settings()
-
-        # Label 设置
-        # 关键：设置 WA_TransparentForMouseEvents，让 Label 不拦截鼠标事件，传递给父窗口 Overlay
         self.label.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
-        
         self.label.adjustSize()
         self.old_pos = QPoint()
 
-        # SSH 线程
         self.worker = SSHWorker(self.config)
         self.worker.update_signal.connect(self.update_text)
         self.thread = threading.Thread(target=self.worker.run, daemon=True)
         self.thread.start()
 
-        # 按键检测
         self.key_codes = {"Ctrl": 0x11, "Shift": 0x10, "Alt": 0x12}
         self.is_interactive = False
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.update_interaction_state)
         self.timer.start(20)
 
-        # 系统托盘
+        # 加快保活频率至 500ms，压过任务栏的自刷频率
+        self.topmost_timer = QTimer(self)
+        self.topmost_timer.timeout.connect(self.force_topmost)
+        self.topmost_timer.start(500)
+
         self.tray_icon = QSystemTrayIcon(create_tray_icon(), self)
         tray_menu = QMenu(self)
         tray_menu.addAction("显示窗口").triggered.connect(self.show_overlay)
@@ -348,16 +355,12 @@ class Overlay(QWidget):
         self.tray_icon.show()
 
         self.show()
-        # 启动时强制设置一次穿透状态
         QTimer.singleShot(100, lambda: self.set_penetration(True))
 
     def apply_ui_settings(self):
-        """根据配置生成样式表"""
         ui = self.config.get('ui_settings', DEFAULT_CONFIG['ui_settings'])
         bg_c = QColor(ui.get('bg_color', '#000000'))
         opacity = ui.get('bg_opacity', 200)
-        
-        # 构建rgba字符串
         bg_rgba = f"rgba({bg_c.red()}, {bg_c.green()}, {bg_c.blue()}, {opacity})"
         
         self.label = QLabel("Connecting...", self)
@@ -389,18 +392,28 @@ class Overlay(QWidget):
                 self.is_interactive = False
 
     def set_penetration(self, enabled):
+        # 关键修复：使用 int() 转换 winId()，解决 sip.voidptr 无法传递给 ctypes 的问题
         hwnd = int(self.winId())
         style = user32.GetWindowLongW(hwnd, GWL_EXSTYLE)
         
         if enabled:
-            user32.SetWindowLongW(hwnd, GWL_EXSTYLE, style | WS_EX_LAYERED | WS_EX_TRANSPARENT)
+            user32.SetWindowLongW(hwnd, GWL_EXSTYLE, style | WS_EX_LAYERED | WS_EX_TRANSPARENT | WS_EX_NOACTIVATE)
             self.unsetCursor()
         else:
             user32.SetWindowLongW(hwnd, GWL_EXSTYLE, (style | WS_EX_LAYERED) & ~WS_EX_TRANSPARENT)
             self.setCursor(Qt.CursorShape.OpenHandCursor)
         
-        # 关键：强制刷新窗口框架，否则穿透属性可能不会立即生效
-        user32.SetWindowPos(hwnd, None, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOZORDER | SWP_FRAMECHANGED)
+        user32.SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_FRAMECHANGED | SWP_NOACTIVATE | SWP_SHOWWINDOW)
+
+    def force_topmost(self):
+        if not self.isVisible(): return
+        # 关键修复：使用 int() 转换 winId()
+        hwnd = int(self.winId())
+        user32.SetWindowPos(hwnd, HWND_TOPMOST, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_SHOWWINDOW)
+
+    def showEvent(self, event):
+        super().showEvent(event)
+        QTimer.singleShot(50, self.force_topmost)
 
     def open_settings(self):
         self.set_penetration(False)
@@ -427,8 +440,9 @@ class Overlay(QWidget):
         self.label.setText(text)
         self.label.adjustSize()
         self.resize(self.label.size())
+        # 每次更新文本时顺便强制置顶一次
+        self.force_topmost()
 
-    # 拖动逻辑
     def mousePressEvent(self, event):
         if event.button() == Qt.MouseButton.LeftButton:
             self.old_pos = event.position().toPoint()
@@ -452,6 +466,7 @@ class Overlay(QWidget):
 
     def quit_app(self):
         self.timer.stop()
+        self.topmost_timer.stop()
         self.worker.stop()
         self.tray_icon.hide()
         QApplication.quit()

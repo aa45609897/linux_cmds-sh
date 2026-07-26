@@ -7,5 +7,7 @@
         "AppKey" : "u9Ht9KoJFPz1GF4UhlXu0ESpOefCScON",
         "Secretkey" : "SaqjXEI6vL8C925r2CzfBp1waxgNELDa",
         "Signkey" : "sJXEeI4LSAt1lPHFxLC+eKT#euRqWwzS"
-    }
+    },
+    "glm_key": "e523098d6d9e420fb6a20348414e4796.cWKGqgAe8TYV3QzJ",
+    "wandb": "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"
 }

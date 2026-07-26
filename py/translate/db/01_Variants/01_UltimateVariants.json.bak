@@ -1,0 +1,415 @@
+{
+  "Meta (元)": {
+    "Description": "传闻由机械师亲手打造的武器改装件，全程徒手制作，未借助任何工具。",
+    "Explanation": "降低后坐力、优化人机工程学并减少热量积聚的武器变体，无任何缺陷。",
+    "ShortName": "Meta",
+    "Properties": {
+      "RecoilForceUp": "-25%",
+      "RecoilForceBack": "-10%",
+      "RecoilReturnSpeedHandRotation": "+10%",
+      "RecoilCamera": "-10%",
+      "RecoilDampingHandRotation": "-10%",
+      "RecoilReturnPathDampingHandRotation": "-10%",
+      "Ergonomics": "+25",
+      "RecoilStableIndexShot": 4,
+      "HeatFactorByShot": "-25%"
+    },
+    "Weapons": [
+      "9A-91",
+      "AVT-40",
+      "AK-12",
+      "G36",
+      "M4A1",
+      "SPEAR 6.8",
+      "Mk47",
+      "SA-58",
+      "AS VAL",
+      "PPSh-41",
+      "PKP",
+      "RPK-16",
+      "M60E6",
+      "AK-102",
+      "HK 416A5",
+      "AKM",
+      "Saiga-12K FA",
+      "AK-50"
+    ],
+    "Rarity": "Ultimate"
+  },
+  "Lapua (拉普阿)": {
+    "Description": "备受追捧的武器变体，专为所有忠实的拉普阿爱好者打造",
+    "Explanation": ".338拉普阿马格南口径的武器变体，兼容所有.338弹匣，但后坐力和热量积累增加。",
+    "ShortName": ".338",
+    "Properties": {
+      "RecoilForceUp": "+25%",
+      "RecoilForceBack": "+50%",
+      "RecoilCamera": "+30%",
+      "RecoilReturnPathDampingHandRotation": "-30%",
+      "RecoilDampingHandRotation": "+5%",
+      "RecoilReturnSpeedHandRotation": "-30%",
+      "RecoilReturnPathOffsetHandRotation": "+30%",
+      "HeatFactorByShot": "+100%"
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [],
+          "FromWeapons": [
+            "Mk-18 Mjölnir",
+            "AXMC"
+          ],
+          "Add": []
+        }
+      },
+      "Chambers": {
+        "Filter": [],
+        "FromWeapons": [
+          "AXMC"
+        ],
+        "Add": []
+      }
+    },
+    "Weapons": [
+      "AK-545",
+      "TX-15 DML",
+      "G28",
+      "M1A",
+      "RSASS",
+      "AS VAL",
+      "AK-74",
+      "T-5000M",
+      "VSK-94",
+      "X-17"
+    ],
+    "Rarity": "Ultimate"
+  },
+  "Overclocked & Automatic (超频与自动)": {
+    "Description": "当处理器被装入武器时会发生什么？它会变得自动化且需要冷却。既然要加装冷却系统，何不超频让它射得更快？研究人员对这种骇人发明深感不安。",
+    "Explanation": "仅具备全自动射击模式的武器变体，射速提升且冷却性能增强，但人体工程学性能降低。",
+    "ShortName": "OC/AC",
+    "Properties": {
+      "WeapFireType": [
+        "fullauto"
+      ],
+      "CoolFactorGun": "+50%",
+      "CoolFactorGunMods": 1,
+      "SingleFireRate": "+35%",
+      "BFirerate": "+40%",
+      "Ergonomics": "-20%"
+    },
+    "Changes": {
+      "Minimum": {
+        "BFirerate": 450
+      }
+    },
+    "Weapons": [
+      "OP-SKS",
+      "RFB",
+      "VPO-209",
+      "SR-25",
+      "RSASS",
+      "M1A",
+      "Glock 19X",
+      "SR-1MP",
+      "USP .45",
+      "Glock 18C"
+    ],
+    "Rarity": "Ultimate"
+  },
+  "Heavy Machine Gun (重型机枪)": {
+    "Description": "闭上眼睛，扣动扳机。毫无感觉。与枪融为一体。",
+    "Explanation": "仅具备全自动射击模式的武器变体，拥有更低的垂直后坐力、显著更高的水平后坐力以及更高的射速。",
+    "ShortName": "HMG",
+    "Properties": {
+      "RecoilForceBack": "+150%",
+      "RecoilForceUp": "-60%",
+      "WeapFireType": [
+        "fullauto"
+      ],
+      "BFirerate": "+20%"
+    },
+    "Weapons": [
+      "PKM",
+      "RPDN",
+      "M60E6",
+      "HK 416A5",
+      "RPK-16",
+      "Mk 43 Mod 1",
+      "PKP",
+      "RPD"
+    ],
+    "Rarity": "Ultimate"
+  },
+  "Anti-materiel rifle (反器材步枪)": {
+    "Description": "运用量子物理——或许还掺杂了些许黑魔法——这款武器变体发射的弹药通常用于对抗轻型装甲车辆。",
+    "Explanation": "一种武器变体，采用12.7x108毫米口径，配备小型单弹匣，水平后坐力增大，且仅会发生哑火故障。使用12.7x108毫米弹药，可在斯基尔LL1处获取。",
+    "ShortName": "AMR",
+    "Properties": {
+      "RecoilForceBack": "+300%",
+      "AllowJam": false,
+      "AllowFeed": false,
+      "AllowSlide": false,
+      "AllowMisfire": true
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "12.7x108 Anti-materiel rifle Variant 2-round magazine"
+          ],
+          "FromWeapons": [],
+          "Add": []
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "NSV Utyos"
+        ]
+      }
+    },
+    "IndividualChanges": {
+      "Blicky": {
+        "Slots": {
+          "mod_magazine": {
+            "Filter": [
+              "Blicky Special Magical Unbelievable Magazine"
+            ],
+            "FromWeapons": [],
+            "Add": []
+          }
+        }
+      }
+    },
+    "Weapons": [
+      "Mosin Sniper",
+      "AXMC",
+      "M700",
+      "OP-SKS",
+      "SVT-40",
+      "AVT-40",
+      "MP-43-1C",
+      "MP-18",
+      "Sawed-off",
+      "Blicky",
+      "FN40GL",
+      "TRG M10"
+    ],
+    "Rarity": "Ultimate"
+  },
+  "Point & Click (点击式)": {
+    "Description": "整个内部已被替换为尖端实验性电子设备，使其转变为精准高效的工具。虽略显脆弱，却能同时向同一目标发射四轮弹药，且精度极高。",
+    "Explanation": "低后坐力与低散布的武器变体，拥有极高的射速、五发点射模式及免故障特性，但会加速武器耐久度的损耗。",
+    "ShortName": "P&C",
+    "Properties": {
+      "WeapFireType": [
+        "burst"
+      ],
+      "BFirerate": "+400%",
+      "RecoilForceBack": "-80%",
+      "RecoilForceUp": "-80%",
+      "RecoilCamera": "-80%",
+      "AimPlane": "-80%",
+      "RecolDispersion": "-80%",
+      "RecoilReturnPathDampingHandRotation": "-80%",
+      "RecoilDampingHandRotation": "-80%",
+      "RecoilReturnSpeedHandRotation": "+80%",
+      "CenterOfImpact": 0.01,
+      "BurstShotsCount": 5,
+      "HeatFactorByShot": "+200%",
+      "DurabilityBurnRatio": "+40%",
+      "AllowJam": false,
+      "AllowFeed": false,
+      "AllowMisfire": false,
+      "AllowSlide": false,
+      "MaxRepairKitDegradation": 0
+    },
+    "IndividualChanges": {
+      "SVT-40": {
+        "Properties": {
+          "BFirerate": 4123
+        }
+      }
+    },
+    "Weapons": [
+      "STM-9",
+      "AK-545",
+      "SVT-40",
+      "TX-15 DML",
+      "VSS Vintorez",
+      "Vector 9x19",
+      "ASh-12"
+    ],
+    "Rarity": "Ultimate"
+  },
+  "Buckshot Launcher (鹿弹发射器)": {
+    "Description": "“点击式霰弹枪冒险”  \n全爆发变体的近亲——只需扣动一次扳机，即可释放全部威力！",
+    "Explanation": "全弹夹连发模式且后坐力显著降低的霰弹枪变体",
+    "ShortName": "Buckshot L.",
+    "Properties": {
+      "BFirerate": "+0%",
+      "WeapFireType": [
+        "burst"
+      ],
+      "BurstShotsCount": 100,
+      "RecoilForceBack": "-90%",
+      "RecoilForceUp": "-90%",
+      "RecoilCamera": "-90%"
+    },
+    "Changes": {
+      "Minimum": {
+        "BFirerate": 7200
+      }
+    },
+    "IndividualChanges": {
+      "AA-12 Gen 1": {
+        "Properties": {
+          "WeapFireType": [
+            "fullauto"
+          ]
+        }
+      },
+      "AA-12 Gen 2": {
+        "Properties": {
+          "WeapFireType": [
+            "fullauto"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "KS-23M",
+      "590A1",
+      "M870",
+      "MP-133",
+      "MP-153",
+      "MP-155",
+      "TOZ-106",
+      "AA-12 Gen 1",
+      "AA-12 Gen 2",
+      "Saiga-12K"
+    ],
+    "Rarity": "Ultimate"
+  },
+  "Pay to Win (付费获胜)": {
+    "Description": "专为塔科夫大佬准备！这些枪简直是在烧钱！",
+    "Explanation": "武器变体，使用.50 BMG弹药，后坐力显著增大，射速降低。配备极其昂贵的弹匣。",
+    "ShortName": "P2W",
+    "Properties": {
+      "RecoilForceUp": "+35%",
+      "RecoilCamera": "+15%",
+      "BFirerate": "-20%"
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "Pay to Win Variant 5-round magazine",
+            "Pay to Win Variant 20-round magazine",
+            "Pay to Win Variant 30-round magazine",
+            "Pay to Win Variant 50-round magazine"
+          ],
+          "FromWeapons": [],
+          "Add": []
+        }
+      },
+      "Chambers": {
+        "Filter": [],
+        "FromWeapons": [
+          "AK-50"
+        ],
+        "Add": []
+      }
+    },
+    "Weapons": [
+      "AK-74M",
+      "AK-102",
+      "AKM",
+      "VSS Vintorez",
+      "M4A1",
+      "Mk47",
+      "HK 416A5",
+      "SPEAR 6.8"
+    ],
+    "Rarity": "Ultimate"
+  },
+  "The Unheard Edition (《无声版》)": {
+    "Description": "某网络门户声称，这些武器是尼基塔在EFT 1.0发布后不久制造的，并被放入特殊的付费箱中。  \n又或者……这只是一场噩梦？",
+    "Explanation": "武器变体，使用12.7x108毫米弹药，可见后坐力增大，配备极其昂贵的弹匣。",
+    "ShortName": "Unheard",
+    "Properties": {
+      "WeapFireType": [
+        "single"
+      ],
+      "RecoilForceUp": "+35%",
+      "RecoilCamera": "+15%"
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "The Unheard Edition Variant 5-round magazine",
+            "The Unheard Edition Variant 10-round magazine",
+            "The Unheard Edition Variant 20-round magazine",
+            "The Unheard Edition Variant 30-round magazine"
+          ],
+          "FromWeapons": [],
+          "Add": []
+        }
+      },
+      "Chambers": {
+        "Filter": [],
+        "FromWeapons": [
+          "NSV Utyos"
+        ],
+        "Add": []
+      }
+    },
+    "Weapons": [
+      "G28",
+      "M1A",
+      "Mk-18 Mjölnir",
+      "RSASS",
+      "SR-25",
+      "SVDS",
+      "VSS Vintorez",
+      "AK-50"
+    ],
+    "Rarity": "Ultimate"
+  },
+  "50Cal (50口径)": {
+    "Description": ".50口径变体的诞生源于有人提出：“要是我们把所有东西都做成.50 BMG会怎样？🤔”  \n恭喜——你现在拥有了便携式反器材辩论武器。  \n告别后坐力，拥抱轨道。",
+    "Explanation": ".50 BMG口径的武器变体，后坐力增强，配备特制5发内置弹仓。",
+    "ShortName": ".50 BMG",
+    "Properties": {
+      "RecoilForceUp": "+100%",
+      "RecoilForceBack": "+260%"
+    },
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "AK-50"
+        ]
+      },
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "M82A1 .50 BMG 5-round internal magazine"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "Mosin Infantry",
+      "AXMC",
+      "M700",
+      "OP-SKS",
+      "SVT-40",
+      "AVT-40",
+      "MP-43-1C",
+      "MP-18",
+      "Sawed-off",
+      "FN40GL"
+    ],
+    "Rarity": "Ultimate"
+  }
+}

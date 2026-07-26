@@ -1,0 +1,316 @@
+{
+  "Overclocked": {
+    "Description": "通过采用高性能电脑的水冷技术，这款变体武器能够以超越以往的速度开火，以更高的复杂度为代价，带来无与伦比的射击速度。",
+    "Explanation": "武器变体，射速提升且冷却能力增强，但人体工程学略有降低。",
+    "ShortName": "OC",
+    "Properties": {
+      "CoolFactorGun": "+50%",
+      "CoolFactorGunMods": 1,
+      "SingleFireRate": "+35%",
+      "BFirerate": "+35%",
+      "Ergonomics": "-15",
+      "Weight": "+20%"
+    },
+    "Weapons": [
+      "AK-12",
+      "AK-104",
+      "AUG A1",
+      "HK 416A5",
+      "MCX .300 BLK",
+      "SPEAR 6.8",
+      "SA-58",
+      "AS VAL",
+      "MP7A2",
+      "MPX",
+      "P90",
+      "PPSh-41",
+      "Vector .45ACP",
+      "PKM",
+      "RPD",
+      "RPDN",
+      "UZI PRO Pistol"
+    ],
+    "Rarity": "Advanced"
+  },
+  "Upgraded": {
+    "Description": "我们对原件进行了清洁，拧紧了几颗螺丝，瞧——它现在正式‘升级’了！",
+    "Explanation": "改进后坐力、精度、人机工程学、射速和热量积聚的武器变体",
+    "ShortName": "Upgraded",
+    "Properties": {
+      "RecoilForceUp": "-15%",
+      "RecoilForceBack": "-15%",
+      "RecoilReturnSpeedHandRotation": "+7%",
+      "RecoilCamera": "-15%",
+      "RecoilDampingHandRotation": "-7%",
+      "AimPlane": "-20%",
+      "RecolDispersion": "-50%",
+      "Ergonomics": "+15",
+      "SingleFireRate": "+10%",
+      "BFirerate": "+10%",
+      "HeatFactorByShot": "-30%"
+    },
+    "Weapons": [
+      "Mk47",
+      "Mk 16",
+      "SPEAR 6.8",
+      "AK-74N",
+      "AK-103",
+      "AKS-74U",
+      "AKS-74N",
+      "PM",
+      "PB",
+      "APS",
+      "PP-91-01 Kedr-B",
+      "PP-91 Kedr",
+      "Glock 17",
+      "MP5K-N",
+      "Saiga-9",
+      "MP7A1",
+      "SR-3M"
+    ],
+    "Rarity": "Advanced"
+  },
+  "Light Machine Gun": {
+    "Description": "我们很清楚，这本杂志要么尴尬地悬在武器下方，要么以某种方式卡在了里面——但我们就当这是个特色，继续往下看吧。",
+    "Explanation": "7.62x54r弹药型号的武器变体，仅兼容100发弹匣。其特点包括后坐力增强、射速降低，并仅支持全自动射击模式。",
+    "ShortName": "LMG",
+    "Properties": {
+      "RecoilForceBack": "+35%",
+      "RecoilForceUp": "+35%",
+      "RecoilCamera": "+35%",
+      "RecoilStableIndexShot": 100,
+      "RecoilStableAngleIncreaseStep": "+35%",
+      "RecoilDampingHandRotation": "+5%",
+      "RecoilReturnSpeedHandRotation": "+35%",
+      "Ergonomics": "+10",
+      "BFirerate": "-35%",
+      "WeapFireType": [
+        "fullauto"
+      ],
+      "DurabilityBurnRatio": "-50%"
+    },
+    "Changes": {
+      "Minimum": {
+        "BFirerate": 450
+      },
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "PKP"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "PKP"
+        ]
+      }
+    },
+    "IndividualChanges": {
+      "Blicky": {
+        "Slots": {
+          "mod_magazine": {
+            "Filter": [
+              "Blicky Special Magical Unbelievable Magazine"
+            ]
+          }
+        }
+      }
+    },
+    "Weapons": [
+      "HK 416A5",
+      "M4A1",
+      "SA-58",
+      "RD-704",
+      "AKM",
+      "AK-12",
+      "MCX .300 BLK",
+      "VPO-136 Vepr-KM",
+      "RPK-16",
+      "Blicky"
+    ],
+    "Rarity": "Advanced"
+  },
+  "Shotgun": {
+    "Description": "用来给朋友们惊喜的完美武器。他们会以为你带了把突击步枪——直到看见弹匣。这时他们才明白你在搞什么名堂。",
+    "Explanation": "12/70霰弹口径的武器变体，兼容Saiga-12K弹匣，但后坐力增大且射速较低。",
+    "ShortName": "Shotgun",
+    "Properties": {
+      "RecoilForceUp": "+45%",
+      "RecoilForceBack": "+90%",
+      "BFirerate": "-34%",
+      "RecoilCamera": "+30%",
+      "ShotgunDispersion": 3
+    },
+    "Changes": {
+      "Minimum": {
+        "BFirerate": 450
+      },
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "Saiga-12K",
+            "AA-12 Gen 1"
+          ],
+          "Add": [
+            "Shotgun Variant 35-round drum magazine"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "Saiga-12K"
+        ]
+      }
+    },
+    "Weapons": [
+      "HK 416A5",
+      "MCX .300 BLK",
+      "SPEAR 6.8",
+      "SA-58",
+      "AS VAL",
+      "UMP 45",
+      "MP7A2",
+      "FN 5-7",
+      "STM-9",
+      "VPO-101 Vepr-Hunter",
+      "AKS-74",
+      "RPDN",
+      "RPD",
+      "Velociraptor .300 BLK"
+    ],
+    "Rarity": "Advanced"
+  },
+  "Unbreakable": {
+    "Description": "某位电视名人用他的神奇产品让这把枪变得坚不可摧  \n现在你可以把它扔进沙子里，再也不用担心卡壳  \n~甚至能在水下使用！~  \n只是……最好别把它切成两半",
+    "Explanation": "武器变体免疫耐久度损伤、过热及故障。",
+    "ShortName": "Unbreakable",
+    "Properties": {
+      "DurabilityBurnRatio": 0,
+      "HeatFactorByShot": 0,
+      "AllowJam": false,
+      "AllowFeed": false,
+      "AllowMisfire": false,
+      "AllowSlide": false
+    },
+    "Weapons": [
+      "AS VAL",
+      "VSS Vintorez",
+      "AVT-40",
+      "M4A1",
+      "PKP",
+      "MP5",
+      "VPO-101 Vepr-Hunter"
+    ],
+    "Rarity": "Advanced"
+  },
+  "Hypersonic": {
+    "Description": "用于改造这件武器的技术，理论上根本不该成立。数十年的研究仅勉强降低了子弹对重力的敏感度，且远未达到完善。",
+    "Explanation": "武器变体，拥有极高的初速和极佳的精度",
+    "ShortName": "Hypersonic",
+    "Properties": {
+      "Velocity": 350,
+      "CenterOfImpact": 0.01
+    },
+    "Weapons": [
+      "Mk-18 Mjölnir",
+      "ASh-12",
+      "RD-704",
+      "G28",
+      "M1A",
+      "RSASS",
+      "MP-18",
+      "RSh-12",
+      "AK-12",
+      "AK-105",
+      "MCX .300 BLK",
+      "Mk 17",
+      "G36"
+    ],
+    "Rarity": "Advanced"
+  },
+  "Sniper": {
+    "Description": "一款专为偶尔在舒适安全距离内将人类误认为野猪的猎人设计的武器",
+    "Explanation": "霰弹枪武器变体，提升射速与精准度",
+    "ShortName": "Sniper",
+    "Properties": {
+      "Velocity": 100,
+      "ShotgunDispersion": 1,
+      "CenterOfImpact": 0.01
+    },
+    "Changes": {
+      "Slots": {
+        "mod_barrel": {
+          "Filter": [
+            "Sniper Variant 28 inch barrel"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "KS-23M",
+      "M3 Super 90",
+      "M870",
+      "MP-133",
+      "MP-153",
+      "Saiga-12K",
+      "TOZ-106",
+      "590A1"
+    ],
+    "Rarity": "Advanced"
+  },
+  "Speedy": {
+    "Description": "汽油，汽油，汽油！今晚我要踩下油门，我将飞驰……",
+    "Explanation": "射速提升但后坐力更大的武器变体",
+    "ShortName": "Speedy",
+    "Properties": {
+      "BFirerate": "+69%",
+      "RecoilForceUp": "+20%",
+      "RecoilForceBack": "+40%",
+      "RecoilCamera": "+15%"
+    },
+    "Weapons": [
+      "MP5",
+      "PP-19-01",
+      "SR-2M",
+      "UMP 45",
+      "MP7A2",
+      "MPX",
+      "P90",
+      "PPSh-41",
+      "Vector .45ACP",
+      "Vector 9x19",
+      "AK-102",
+      "RPK-16",
+      "Mk 43 Mod 1",
+      "UZI",
+      "X-17"
+    ],
+    "Rarity": "Advanced"
+  },
+  "No-Bolt": {
+    "Description": "有人觉得栓动步枪太难操作，干脆把枪栓拆了。这下好了，没栓了，但“动”作可不少。",
+    "Explanation": "栓动式，但现在是精确射手步枪（DMR）",
+    "ShortName": "No-Bolt",
+    "Properties": {
+      "WeapFireType": [
+        "burst"
+      ],
+      "BurstShotsCount": 1
+    },
+    "Changes": {
+      "Minimum": {
+        "BFirerate": 450
+      }
+    },
+    "Weapons": [
+      "T-5000M",
+      "SV-98",
+      "DVL-10",
+      "M700",
+      "VPO-215",
+      "TRG M10"
+    ],
+    "Rarity": "Advanced"
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "Dragunov (德拉贡诺夫)": {
+    "Description": "据传由波德日基·德拉贡诺夫制作的多种栓动步枪改装件",
+    "Explanation": "9.3x64mm口径武器变体，配备配套的TKPD弹匣",
+    "ShortName": "Dragunov",
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "TKPD"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "TKPD"
+        ]
+      }
+    },
+    "Weapons": [
+      "T-5000M",
+      "SV-98",
+      "DVL-10",
+      "M700",
+      "VPO-215",
+      "TRG M10",
+      "Mosin Infantry",
+      "Mosin Sniper"
+    ],
+    "Rarity": "Baseline"
+  },
+  "No-Bolt (无螺栓)": {
+    "Weapons": [
+      "MXLR"
+    ]
+  },
+  "50Cal (50口径)": {
+    "Weapons": [
+      "MXLR"
+    ]
+  },
+  "Handy (便携式)": {
+    "Weapons": [
+      "MXLR"
+    ]
+  },
+  "Quick-scope (快速瞄准)": {
+    "IndividualChanges": {
+      "MXLR": {
+        "Slots": {
+          "mod_mount": {
+            "Filter": [
+              "M1895/MXLR Ranger Point Precision RHINO 5 inch Quick-scope rail"
+            ]
+          }
+        }
+      }
+    },
+    "Weapons": [
+      "MXLR"
+    ]
+  },
+  "Freedom \"Thing\" (自由“物”)": {
+    "Weapons": [
+      "AS VAL MOD.4"
+    ]
+  },
+  "Unbreakable (牢不可破)": {
+    "Weapons": [
+      "AS VAL MOD.4"
+    ]
+  },
+  "SMG (冲锋枪)": {
+    "Weapons": [
+      "AS VAL MOD.4"
+    ]
+  },
+  "Marksman (神射手)": {
+    "Weapons": [
+      "AK-308"
+    ]
+  },
+  "Light Machine Gun (轻机枪)": {
+    "Weapons": [
+      "AK-308"
+    ]
+  },
+  "Experimental (实验性)": {
+    "Weapons": [
+      "AK-308"
+    ]
+  },
+  "The Unheard Edition (《未闻之声》版)": {
+    "Weapons": [
+      "TKPD"
+    ]
+  },
+  "Control-Fire (控制火)": {
+    "Weapons": [
+      "TKPD"
+    ]
+  },
+  "Hypersonic (高超音速)": {
+    "Weapons": [
+      "TKPD"
+    ]
+  },
+  "Meta (元)": {
+    "Weapons": [
+      "NL545 GP"
+    ]
+  },
+  "Lawn Mower (割草机)": {
+    "Weapons": [
+      "NL545 GP"
+    ]
+  },
+  "Slowed (减速)": {
+    "Weapons": [
+      "NL545 GP"
+    ]
+  },
+  "Pay to Win (付费获胜)": {
+    "Weapons": [
+      "NL545 DI"
+    ]
+  },
+  "World War II (第二次世界大战)": {
+    "Weapons": [
+      "NL545 DI"
+    ]
+  },
+  "Modified (改性)": {
+    "Weapons": [
+      "NL545 DI"
+    ]
+  },
+  "Black Market (黑市)": {
+    "Weapons": [
+      "Model 1"
+    ]
+  },
+  "Laser Rifle (激光步枪)": {
+    "Weapons": [
+      "Model 1"
+    ]
+  },
+  "Speedy (急速)": {
+    "Weapons": [
+      "Model 1"
+    ]
+  },
+  "Endless (无尽)": {
+    "Weapons": [
+      "M16A1"
+    ]
+  },
+  "Upgraded (升级版)": {
+    "Weapons": [
+      "M16A1"
+    ]
+  },
+  "Converted (转换的)": {
+    "Weapons": [
+      "M16A1"
+    ]
+  },
+  "Rifle Grenade Launcher (步枪枪榴弹发射器)": {
+    "Weapons": [
+      "M16A2"
+    ]
+  },
+  "Fullburst (全爆)": {
+    "Weapons": [
+      "M16A2"
+    ]
+  },
+  "Overclocked (超频版)": {
+    "Weapons": [
+      "M16A2"
+    ]
+  }
+}

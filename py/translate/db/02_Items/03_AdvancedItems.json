@@ -1,0 +1,36 @@
+{
+  "Sniper Variant 28 inch barrel": {
+    "Description": "狙击变体武器专用28英寸枪管",
+    "ShortName": "Sniper 28\"",
+    "ItemTplToClone": "628121434fa03b6b6c35dc6a",
+    "HandbookPriceRoubles": 39876,
+    "VariantType": "Sniper",
+    "Rarity": "Advanced"
+  },
+  "Shotgun Variant 35-round drum magazine": {
+    "Description": "适用于霰弹枪变体武器的35发12号口径弹鼓",
+    "ShortName": "Shotgun 35-round",
+    "ItemTplToClone": "6709133fa532466d5403fb7c",
+    "Changes": {
+      "Cartridges": {
+        "Count": 35,
+        "FromWeapons": [
+          "Saiga-12K"
+        ]
+      }
+    },
+    "Barter": {
+      "TraderId": "PEACEKEEPER",
+      "LoyalLevel": 1,
+      "UnlimitedCount": true,
+      "StackObjectsCount": 99,
+      "BarterPrice": {
+        "MONEY_ROUBLES": 36000,
+        "Advanced Quality Variant Core": 1
+      }
+    },
+    "HandbookPriceRoubles": 36000,
+    "VariantType": "Shotgun",
+    "Rarity": "Advanced"
+  }
+}

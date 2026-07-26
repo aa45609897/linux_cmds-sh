@@ -1,0 +1,65 @@
+{
+  "Multi-caliber Rifle Grenade Launcher 7-round internal magazine (多口径枪榴弹发射器7发内置弹仓)": {
+    "Description": "适用于AXMC、OP-SKS、莫辛-纳甘步兵型及TRG M10步枪榴弹发射器变体武器的7发弹匣\n可容纳7.62×39毫米、7.62×54R、.338拉普阿马格南及40×46毫米口径子弹/榴弹",
+    "ShortName": "R.Gre mag",
+    "ItemTplToClone": "587df3a12459772c28142567",
+    "Changes": {
+      "Cartridges": {
+        "Count": 7,
+        "FromWeapons": [
+          "AXMC",
+          "OP-SKS",
+          "Mosin Infantry",
+          "FN40GL",
+          "AGS-30"
+        ]
+      }
+    },
+    "HandbookPriceRoubles": 21937,
+    "VariantType": "Rifle Grenade Launcher",
+    "Rarity": "Niche"
+  },
+  "M32A1 40mm 6-round Bombardier cylinder (M32A1 40毫米6发轰炸机圆柱体)": {
+    "Description": "标准型6发弹巢，适用于“投弹手”变体转轮手枪",
+    "ShortName": "MSGL B.6",
+    "ItemTplToClone": "627bce33f21bc425b06ab967",
+    "Changes": {
+      "Parent": "610720f290b75a49ff2e5e25"
+    },
+    "HandbookPriceRoubles": 15000,
+    "VariantType": "Bombardier",
+    "Rarity": "Niche"
+  },
+  "M32A1 40mm 5-round Bombardier cylinder (M32A1 40毫米5发装弹手发射器)": {
+    "Description": "标准配置的5发弹巢，适用于庞巴迪变体左轮手枪",
+    "ShortName": "MSGL B.5",
+    "ItemTplToClone": "627bce33f21bc425b06ab967",
+    "Changes": {
+      "Parent": "610720f290b75a49ff2e5e25",
+      "Slots": {
+        "camora_004": {
+          "Filter": []
+        }
+      }
+    },
+    "HandbookPriceRoubles": 15000,
+    "VariantType": "Bombardier",
+    "Rarity": "Niche"
+  },
+  "Glass Cannon .50BMG 1-shell magazine (玻璃大炮 .50BMG 单发弹匣)": {
+    "Description": "非标准1发弹匣，用于玻璃加农变体霰弹枪",
+    "ShortName": "GC .50",
+    "ItemTplToClone": "55d485804bdc2d8c2f8b456b",
+    "Changes": {
+      "Cartridges": {
+        "Count": 1,
+        "FromWeapons": [
+          "AK-50"
+        ]
+      }
+    },
+    "HandbookPriceRoubles": 5555,
+    "VariantType": "Glass Cannon",
+    "Rarity": "Niche"
+  }
+}

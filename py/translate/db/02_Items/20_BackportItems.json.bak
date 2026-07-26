@@ -1,0 +1,22 @@
+{
+  "M1895/MXLR Ranger Point Precision RHINO 5 inch Quick-scope rail (M1895/MXLR 游侠精准犀牛5英寸快速瞄准导轨)": {
+    "Description": "M1895速瞄步枪用5英寸顶部导轨。允许安装反射式瞄准镜。由[已编辑]制造。",
+    "ShortName": "RHINO Q",
+    "ItemTplToClone": "67c541fcb032bbdb530201be",
+    "Properties": {
+      "Weight": 0
+    },
+    "Changes": {
+      "Slots": {
+        "mod_scope": {
+          "Filter": [
+            "Quick-scope special \"reflex\" sight"
+          ]
+        }
+      }
+    },
+    "HandbookPriceRoubles": 7260,
+    "VariantType": "Quick-scope",
+    "Rarity": "Flawed"
+  }
+}

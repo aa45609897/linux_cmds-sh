@@ -1,0 +1,406 @@
+{
+  "RSASS Unique": {
+    "Description": "我做了一个梦，梦中见到多种武器类型完美融合、协同运作，只为让普通子弹的威力再强上那么一点点。",
+    "Explanation": "RSASS >精准霰弹枪<\n这款独特变体将RSASS改造为具备远程能力的霰弹枪武器，通过将口径改为12/70号霰弹，降低后坐力并消除故障。其霰弹散布范围缩小，并支持两发点射模式。",
+    "ShortName": ">Marksman Shotgun<",
+    "Properties": {
+      "WeapFireType": [
+        "single",
+        "burst"
+      ],
+      "SingleFireRate": 400,
+      "RecoilForceBack": "-30%",
+      "RecoilForceUp": "-20%",
+      "RecoilDampingHandRotation": "-30%",
+      "RecoilReturnSpeedHandRotation": "-30%",
+      "RecoilCamera": "+30%",
+      "BurstShotsCount": 2,
+      "AllowJam": false,
+      "AllowFeed": false,
+      "AllowMisfire": false,
+      "AllowSlide": false,
+      "ShotgunDispersion": 3
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "Saiga-12K",
+            "AA-12 Gen 1"
+          ],
+          "Add": [
+            "Shotgun Variant 35-round drum magazine"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "Saiga-12K"
+        ]
+      }
+    },
+    "Weapons": [
+      "RSASS"
+    ],
+    "Rarity": "Unique"
+  },
+  "AVT-40 Unique": {
+    "Description": "翻新后的武器，曾经脆弱不堪，如今坚不可摧；曾经弹匣狭小，如今容量巨大；曾经属于新手，如今属于硬汉（不过依然没有瞄准镜）。",
+    "Explanation": "AVT-40 >不可摧毁轻机枪<  \n这款独特变体融合了“不可摧毁”与“轻机枪”变体类型的最佳特性，通过消除热量积累与故障机制使武器近乎无法摧毁，同时允许使用PKP弹匣以提升火力，仅有的小缺陷是缺乏后坐力稳定点。",
+    "ShortName": ">Unbreakable LMG<",
+    "Properties": {
+      "DurabilityBurnRatio": 0,
+      "HeatFactorByShot": 0,
+      "AllowJam": false,
+      "AllowFeed": false,
+      "AllowMisfire": false,
+      "AllowSlide": false,
+      "RecoilStableIndexShot": 100,
+      "Ergonomics": "+10",
+      "BFirerate": "-35%",
+      "WeapFireType": [
+        "fullauto"
+      ]
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "PKP",
+            "AVT-40"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "AVT-40"
+    ],
+    "Rarity": "Unique"
+  },
+  "ASh-12 Unique": {
+    "Description": "如果你认为这还是你熟悉且喜爱的ASh-12，那你需要再看一眼，质疑你所见之物。",
+    "Explanation": "ASh-12 >超音速点射与激光点击<\n这款独特变体将ASh-12彻底改造成截然不同的武器。即便疯狂的射速与初速最先引人注目，但四发点射模式与零后坐力将这把武器推向荒诞境地——以至于你开始怀疑，改用SR-2M弹匣的9x21mm口径，究竟是削弱还是强化。",
+    "ShortName": ">Hypersonic Point & Laser Click<",
+    "Properties": {
+      "WeapFireType": [
+        "burst"
+      ],
+      "BFirerate": 5450,
+      "RecoilForceBack": "-80%",
+      "RecoilForceUp": "-80%",
+      "RecoilCamera": "-80%",
+      "AimPlane": "-80%",
+      "RecolDispersion": "-80%",
+      "RecoilReturnPathDampingHandRotation": "-80%",
+      "RecoilDampingHandRotation": "-80%",
+      "RecoilReturnSpeedHandRotation": "+80%",
+      "BurstShotsCount": 4,
+      "HeatFactorByShot": "+200%",
+      "DurabilityBurnRatio": "+40%",
+      "AllowJam": false,
+      "AllowFeed": false,
+      "AllowMisfire": false,
+      "AllowSlide": false,
+      "MaxRepairKitDegradation": 0,
+      "RecoilStableIndexShot": 1,
+      "Velocity": 450,
+      "CenterOfImpact": 0.01
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "SR-2M"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "SR-2M"
+        ]
+      }
+    },
+    "Weapons": [
+      "ASh-12"
+    ],
+    "Rarity": "Unique"
+  },
+  "MP-153 Unique": {
+    "Description": "感受无尽噩梦的恐慌！  \n如果“噩梦”指的是装有一百发弹匣且能全自动射击的霰弹枪，那算我一个！",
+    "Explanation": "MP-153 >无尽恐慌<  \n这款独特变体融合了“无尽”型的大容量弹匣与“恐慌”型的全自动模式及变体特性，使其成为即便在恐惧中闭着眼睛也能迅速摧毁整个房间的理想武器。",
+    "ShortName": ">Endless Panic<",
+    "Properties": {
+      "BFirerate": 330,
+      "WeapFireType": [
+        "fullauto"
+      ],
+      "RecoilForceBack": "+39%",
+      "RecoilForceUp": "+39%",
+      "RecoilCamera": "+25%",
+      "AllowJam": false
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "M60 100-round \"Endless\" ammo box"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "MP-153"
+    ],
+    "Rarity": "Unique"
+  },
+  "SKS Unique": {
+    "Description": "OP-SKS的小弟弟想学他哥哥的样子，但在过程中把“OP”误当成了“过于强大”。",
+    "Explanation": "SKS >非主流主流<  \n这一独特变体融合了主流与非主流变体类型的强化属性，并能充分利用更丰富的弹匣种类。",
+    "ShortName": ">Off-Meta Meta<",
+    "Properties": {
+      "WeapFireType": [
+        "single",
+        "burst",
+        "fullauto"
+      ],
+      "RecoilForceBack": "-55%",
+      "RecoilForceUp": "-55%",
+      "RecoilCamera": "-30%",
+      "AimPlane": "-20%",
+      "RecolDispersion": "-20%",
+      "RecoilReturnPathDampingHandRotation": "-30%",
+      "RecoilDampingHandRotation": "-30%",
+      "RecoilReturnSpeedHandRotation": "+30%",
+      "Ergonomics": "+40",
+      "RecoilStableIndexShot": 3
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "SKS",
+            "AKM"
+          ]
+        }
+      }
+    },
+    "Weapons": [
+      "SKS"
+    ],
+    "Rarity": "Unique"
+  },
+  "Sawed-off Unique": {
+    "Description": "- 长官，弹药已经打光了！只剩些零散的榴弹发射器和信号弹！\n- \"信号弹\"？塞进这把霰弹枪里好好利用！\n- 可是长官，信号弹的伤害简直扯淡...\n- 知道什么才叫扯淡吗？这把枪。扯淡发射器。别慌，我们还有别的家伙对付这个！",
+    "Explanation": "锯短型 >扯淡发射器<  \n这款独特变体可发射40x46毫米榴弹、30x29毫米榴弹及26x75毫米信号弹，堪称终极版“弹药耗尽时该怎么办”式武器。",
+    "ShortName": ">Bullshit Launcher<",
+    "Properties": {
+      "Ergonomics": "+100",
+      "RecoilStableIndexShot": 1,
+      "TacticalReloadFixation": 0
+    },
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "SP-81",
+          "AGS-30",
+          "FN40GL"
+        ]
+      }
+    },
+    "Weapons": [
+      "Sawed-off"
+    ],
+    "Rarity": "Unique"
+  },
+  "Mk-18 Mjölnir Unique": {
+    "Description": "嗯，这把MP5长得可真够夸张的……",
+    "Explanation": "Mk-18 雷神之锤 >真·MP5<  \n这款独特变体保留了MP5的属性，同时仍保持.338拉普阿马格南口径",
+    "ShortName": ">Real MP5<",
+    "Properties": {
+      "AimPlane": 0.25,
+      "AimSensitivity": 0.65,
+      "AllowFeed": true,
+      "AllowJam": true,
+      "AllowMisfire": true,
+      "AllowOverheat": true,
+      "AllowSlide": true,
+      "BaseMalfunctionChance": 0.1771,
+      "BurstShotsCount": 3,
+      "CameraSnap": 3.5,
+      "CameraToWeaponAngleStep": 0.1,
+      "CenterOfImpact": 0.22,
+      "CompactHandling": false,
+      "ConflictingItems": [],
+      "CoolFactorGun": 3.168,
+      "CoolFactorGunMods": 1,
+      "DeviationCurve": 2.25,
+      "DeviationMax": 11,
+      "DiscardLimit": -1,
+      "DoubleActionAccuracyPenalty": 1.5,
+      "DropSoundType": "SubMachineGun",
+      "Durability": 100,
+      "DurabilityBurnRatio": 1.15,
+      "Ergonomics": 55,
+      "ExamineExperience": 8,
+      "ExamineTime": 1,
+      "HeatFactorByShot": 1.79,
+      "HeatFactorGun": 1,
+      "Height": 1,
+      "HipAccuracyRestorationDelay": 0.2,
+      "HipAccuracyRestorationSpeed": 7,
+      "HipInnaccuracyGain": 0.16,
+      "IronSightRange": 25,
+      "ItemSound": "weap_ar",
+      "LeftHandItem": false,
+      "LootExperience": 5,
+      "ManualBoltCatch": true,
+      "MaxDurability": 100,
+      "MaxRepairDegradation": 0.04,
+      "MaxRepairKitDegradation": 0.035,
+      "OperatingResource": 5600,
+      "RarityPvE": "Common",
+      "RecoilAngle": 90,
+      "RecoilCamera": 0.03,
+      "RecoilCategoryMultiplierHandRotation": 0.2,
+      "RecoilDampingHandRotation": 0.85,
+      "RecoilForceBack": 267,
+      "RecoilForceUp": 57,
+      "RecoilPosZMult": 1,
+      "RecoilReturnPathDampingHandRotation": 0.45,
+      "RecoilReturnPathOffsetHandRotation": 0.01,
+      "RecoilReturnSpeedHandRotation": 3.5,
+      "RecoilStableAngleIncreaseStep": 2.2,
+      "RecoilStableIndexShot": 6,
+      "RecolDispersion": 10,
+      "ReloadMode": "ExternalMagazine",
+      "RepairComplexity": 0,
+      "RepairCost": 250,
+      "RepairSpeed": 15,
+      "SightingRange": 100,
+      "SingleFireRate": 450,
+      "SizeReduceRight": 0,
+      "StackMaxSize": 1,
+      "StackObjectsCount": 1,
+      "TacticalReloadFixation": 0.95,
+      "Unlootable": false,
+      "UseAltMountBone": false,
+      "Velocity": 13,
+      "Weight": 0.68,
+      "Width": 1,
+      "BEffDist": 200,
+      "BFirerate": 900,
+      "BHearDist": 80,
+      "WeapClass": "smg",
+      "WeapFireType": [
+        "single",
+        "burst",
+        "fullauto"
+      ]
+    },
+    "Weapons": [
+      "Mk-18 Mjölnir"
+    ],
+    "Rarity": "Unique"
+  },
+  "FN 5-7 Unique": {
+    "Description": "约翰·威克的枪，配上它……约翰·威克的弹匣容量，以及约翰·威克的一击必杀潜力。希望你有约翰·威克那样的手腕来驾驭这种口径！别问子弹（还有弹匣！）是怎么塞进去的，这就是电影魔法！",
+    "Explanation": "FN 5-7 >自动氪金版<  \n这款独特变体融合了“氪金必胜”型.50口径与高价特制弹匣，以及“自动型”仅限全自动开火模式、人机工程学略降的特性。",
+    "ShortName": ">Automatic P2W<",
+    "Properties": {
+      "RecoilForceUp": "+35%",
+      "RecoilCamera": "+15%",
+      "WeapFireType": [
+        "fullauto"
+      ],
+      "BFirerate": 240,
+      "Ergonomics": "-15%"
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "Filter": [
+            "Pay to Win Variant 5-round magazine",
+            "Pay to Win Variant 20-round magazine",
+            "Pay to Win Variant 30-round magazine",
+            "Pay to Win Variant 50-round magazine"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "AK-50"
+        ]
+      }
+    },
+    "Weapons": [
+      "FN 5-7"
+    ],
+    "Rarity": "Unique"
+  },
+  "UZI Unique": {
+    "Description": "有个人觉得自己的AR15步枪太重了，于是开始对它实施“实验性减重方案”——切掉不必要的部件。奇怪的是，整体的人体工学性能反而下降了。",
+    "Explanation": "UZI >实验性黑市<  \n这款独特变体融合了黑市-.300与5.56x45口径的特性，以及实验性-移除后坐力与哑火故障，代价是热量积累增加且其他故障概率上升，变体类型。",
+    "ShortName": ">Experimental Black Market<",
+    "Properties": {
+      "WeapFireType": [
+        "fullauto"
+      ],
+      "BaseMalfunctionChance": "+250%",
+      "DurabilityBurnRatio": "+250%",
+      "HeatFactorByShot": "-60%",
+      "AllowMisfire": false,
+      "RecoilStableIndexShot": 1,
+      "BFirerate": "+35%"
+    },
+    "Changes": {
+      "Slots": {
+        "mod_magazine": {
+          "FromWeapons": [
+            "MCX .300 BLK",
+            "M4A1"
+          ]
+        }
+      },
+      "Chambers": {
+        "FromWeapons": [
+          "MCX .300 BLK",
+          "M4A1"
+        ]
+      }
+    },
+    "Weapons": [
+      "UZI"
+    ],
+    "Rarity": "Unique"
+  },
+  "SPEAR 6.8 Unique": {
+    "Description": "让我给你讲个暖心故事：从前有两根长矛，6.8毫米和7.62毫米。有一天它们生了个宝宝，但这宝宝发生了变异，还...升级了...继承了父母两种口径。故事讲完啦！",
+    "Explanation": "SPEAR 6.8 >实际升级版<  \n此独特变体在升级版基础上提升了属性，可兼容.277 FURY与7.62x51mm两种口径。",
+    "ShortName": ">Actually Upgraded<",
+    "Properties": {
+      "RecoilForceUp": "-22%",
+      "RecoilForceBack": "-22%",
+      "RecoilReturnSpeedHandRotation": "+9%",
+      "RecoilCamera": "-22%",
+      "RecoilDampingHandRotation": "-9%",
+      "AimPlane": "-25%",
+      "RecolDispersion": "-75%",
+      "Ergonomics": "+22",
+      "SingleFireRate": "+15%",
+      "BFirerate": "+15%",
+      "HeatFactorByShot": "-50%"
+    },
+    "Changes": {
+      "Chambers": {
+        "FromWeapons": [
+          "SPEAR 6.8",
+          "M700"
+        ]
+      }
+    },
+    "Weapons": [
+      "SPEAR 6.8"
+    ],
+    "Rarity": "Unique"
+  }
+}
